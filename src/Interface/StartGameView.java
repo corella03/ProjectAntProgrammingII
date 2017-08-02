@@ -121,9 +121,9 @@ public class StartGameView extends javax.swing.JFrame {
 
         jLabel3.setText("Columns");
 
-        rowsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        rowsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 
-        columnsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        columnsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
 
         javax.swing.GroupLayout principalPanelLayout = new javax.swing.GroupLayout(principalPanel);
         principalPanel.setLayout(principalPanelLayout);
