@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Logic;
-import javax.swing.JButton;
+import javax.swing.JLabel;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -12,6 +12,6 @@ import javax.swing.JButton;
  ** @date 2017-08-01
  ** 
  **/
-public class Box extends JButton{
-    
+public class Box extends JLabel{
+
 }

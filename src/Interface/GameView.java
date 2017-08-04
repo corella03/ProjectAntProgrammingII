@@ -8,7 +8,7 @@ import Logic.Box;
 import Logic.Globals;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javax.swing.JFrame;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -16,58 +16,43 @@ import java.awt.event.KeyListener;
  ** @date 2017-08-01
  ** 
  **/
-public class GameView extends javax.swing.JFrame implements KeyListener{
+public class GameView extends javax.swing.JFrame{
     /**
      * Creates new form GameView
      */
-    Box [][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
+        int countRows = 0;
+        int countColumns = 0;
+        Box [][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
         starGame();
-        addKeyListener(this);
-        
     }
-    @Override
-    public void keyPressed(KeyEvent ke) {
-        //Arriba 38
-        //Abajo 40
-        //izquieda 37
-        //Derecha 39
-        switch (ke.getKeyCode()) {
-            case 38:
-                System.out.println(ke.getKeyChar() + "Apreta Derecha");
-                break;
-            case 40:
-                System.out.println(ke.getKeyChar() + "Apreta Abajo");
-                break;
-            case 37:
-                System.out.println(ke.getKeyChar() + "Apreta Izquierda");
-                break;
-            case 39:
-                System.out.println(ke.getKeyChar() + "Apreta Arriba");
-                break;
-            default:
-                break;
-        }
-    }
+    
     //Method for start game
     private void starGame()
     {
-        this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
+        
+        //this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
+        this.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
         for (int i = 0; i < Globals.amountRows; i++) 
         {
             for (int j = 0; j < Globals.amountColumns; j++) 
             {
+    //colocar solo ad
                 Box newBox = new Box();
+                this.add(newBox);
+                //gamePanel.add(newBox);
                 matriz[i][j] = newBox;
-                this.gamePanel.add(newBox);
-                matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-                newBox.setBackground(Color.decode("#DEB887"));
-                
-                
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
+
+                //newBox.setBackground(Color.decode("#DEB887"));
+               
             }
         }
+        matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
+        matriz[Globals.amountRows-1][Globals.amountColumns-1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
+        
         this.paintAll(this.getGraphics());
     }
     /**
@@ -79,50 +64,60 @@ public class GameView extends javax.swing.JFrame implements KeyListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gamePanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        gamePanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
-        gamePanel.setLayout(gamePanelLayout);
-        gamePanelLayout.setHorizontalGroup(
-            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 668, Short.MAX_VALUE)
-        );
-        gamePanelLayout.setVerticalGroup(
-            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png"))); // NOI18N
-        jButton1.setText("jButton1");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 864, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(gamePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(jButton1)
-                .addContainerGap(346, Short.MAX_VALUE))
+            .addGap(0, 491, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        
+            switch (evt.getKeyCode()) {
+                case 38:
+                    //Arriba
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
+                    countRows--;
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
+                    break;
+                case 37:
+                    //Izquierda
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
+                    countColumns--;
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
+                    break;
+                case 39:
+                    //Derecha
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
+                    countColumns++;
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
+                    break;
+                case 40:
+                    //Abajo
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
+                    countRows++;
+                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
+                    
+                    break;
+                default:
+                    break;
+            }
+        
+    }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
      */
@@ -158,13 +153,6 @@ public class GameView extends javax.swing.JFrame implements KeyListener{
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel gamePanel;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
-    @Override
-    public void keyTyped(KeyEvent ke) {
-    }
-    @Override
-    public void keyReleased(KeyEvent ke) {
-    }
+   
 }
