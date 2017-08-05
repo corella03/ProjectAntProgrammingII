@@ -14,6 +14,7 @@ package Logic;
 public class Globals {
     public static int amountRows;
     public static int amountColumns;
+    public static Box[][] matriz;
     //Getters
     public static int getAmountRows()
     {

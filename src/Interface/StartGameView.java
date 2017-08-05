@@ -30,7 +30,8 @@ public class StartGameView extends javax.swing.JFrame {
     }
     //Method to select stars icons
     public void selectAint() {
-        switch (starsSlider.getValue()) {
+        switch (starsSlider.getValue()) 
+        {
             case 1:
                 String pathOneStar = "/Icons/oneStar.png";
                 URL urlOneStar = this.getClass().getResource(pathOneStar);
@@ -198,9 +199,7 @@ public class StartGameView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void starsSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_starsSliderStateChanged
-       
     }//GEN-LAST:event_starsSliderStateChanged
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
         Globals.amountRows = Integer.parseInt((String)this.rowsComboBox.getSelectedItem());

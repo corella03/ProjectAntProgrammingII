@@ -4,55 +4,49 @@
  * and open the template in the editor.
  */
 package Interface;
+import Logic.Ant;
 import Logic.Box;
 import Logic.Globals;
-import java.awt.Color;
-import java.awt.event.KeyEvent;
-import javax.swing.JFrame;
 /**
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Ana Elena Ulate
- ** @date 2017-08-01
- ** 
+ ** @date 2017-08-01 * 
+ **
  **/
-public class GameView extends javax.swing.JFrame{
+public class GameView extends javax.swing.JFrame {
     /**
      * Creates new form GameView
      */
-        int countRows = 0;
-        int countColumns = 0;
-        Box [][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
+    Ant newAnt = new Ant("Hormigon",100, 0, 1);
+    
+    
+    //Box[][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
+    
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
         starGame();
-    }
-    
-    //Method for start game
-    private void starGame()
-    {
         
+    }
+    //Method for start game
+    private void starGame() {
+        Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
         //this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
         this.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        for (int i = 0; i < Globals.amountRows; i++) 
-        {
-            for (int j = 0; j < Globals.amountColumns; j++) 
-            {
-    //colocar solo ad
+        for (int i = 0; i < Globals.amountRows; i++) {
+            for (int j = 0; j < Globals.amountColumns; j++) {
+                //colocar solo ad
                 Box newBox = new Box();
                 this.add(newBox);
                 //gamePanel.add(newBox);
-                matriz[i][j] = newBox;
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
-
+                Globals.matriz[i][j] = newBox;
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 //newBox.setBackground(Color.decode("#DEB887"));
-               
             }
         }
-        matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-        matriz[Globals.amountRows-1][Globals.amountColumns-1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-        
+        Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+        Globals.matriz[Globals.amountRows - 1][Globals.amountColumns - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
         this.paintAll(this.getGraphics());
     }
     /**
@@ -84,39 +78,9 @@ public class GameView extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        
-            switch (evt.getKeyCode()) {
-                case 38:
-                    //Arriba
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
-                    countRows--;
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-                    break;
-                case 37:
-                    //Izquierda
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
-                    countColumns--;
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-                    break;
-                case 39:
-                    //Derecha
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
-                    countColumns++;
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-                    break;
-                case 40:
-                    //Abajo
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/rss-reflexion-imagen-14-icono-8244-32.png")));
-                    countRows++;
-                    matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-                    
-                    break;
-                default:
-                    break;
-            }
-        
+        newAnt.hip(evt.getKeyCode());
+        //newAnt.walk(evt.getKeyCode());
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
@@ -144,7 +108,6 @@ public class GameView extends javax.swing.JFrame{
             java.util.logging.Logger.getLogger(GameView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -154,5 +117,4 @@ public class GameView extends javax.swing.JFrame{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-   
 }
