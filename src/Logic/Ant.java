@@ -132,7 +132,7 @@ public class Ant implements IAntInterface{
     @Override
     public void hip(int code) {
         
-        int randomMove = (int) (Math.random()*(4*8));
+        int randomMove = (int) Math.floor(Math.random()*(37-41)+41);
         System.out.println(randomMove);
         switch (code) 
         {
@@ -151,20 +151,18 @@ public class Ant implements IAntInterface{
         }
     }
     @Override
-    public void eatClod(int lumpType) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void eatClod(int Clod) {
+        
         
     }
 
     @Override
     public void modifyHealth(int life) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public void changeAlcoholLevel(int alcoholIngested) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    
+        
+    } 
 }

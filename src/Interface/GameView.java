@@ -7,6 +7,8 @@ package Interface;
 import Logic.Ant;
 import Logic.Box;
 import Logic.Globals;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -18,30 +20,94 @@ public class GameView extends javax.swing.JFrame {
     /**
      * Creates new form GameView
      */
-    Ant newAnt = new Ant("Hormigon",100, 0, 1);
-    
-    
+    Ant newAnt = new Ant("Hormigon",100,0, 1);
+    Box newBox = null;
     //Box[][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
-    
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
         starGame();
-        
+    }
+    //
+    public ArrayList<ArrayList<Integer>> getRandomPositions(int amount, int limitX,int limitY)//limtX
+    {
+        ArrayList<ArrayList<Integer>> clodList = new  ArrayList<>();
+        while(clodList.size() < amount)
+        {
+            int rndX = (int) Math.floor(Math.random()*(0-limitX)+limitX);
+            int rndY  = (int) Math.floor(Math.random()*(0-limitY)+limitY );
+            ArrayList<Integer> indexList = new ArrayList<>();
+            indexList.add(rndX);
+            indexList.add(rndY);
+            if(!clodList.contains(indexList))
+            {
+                clodList.add(indexList);
+            }
+        }
+        return clodList;
     }
     //Method for start game
     private void starGame() {
         Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
         //this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
         this.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
+        ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions(15,Globals.amountRows,Globals.amountColumns);      
+        int cont = 0;
         for (int i = 0; i < Globals.amountRows; i++) {
             for (int j = 0; j < Globals.amountColumns; j++) {
                 //colocar solo ad
-                Box newBox = new Box();
+                ArrayList<Integer> listOfIndex =  new ArrayList<>();
+                listOfIndex.add(i);
+                listOfIndex.add(j);
+                
+                if(randomPositionList.contains(listOfIndex))
+                {
+                    if(cont < 5)
+                    {
+                        newBox = new Box(1);
+                    }
+                    else if(cont < 10)
+                    {
+                        newBox = new Box(2);
+                    }
+                    else if(cont < 15){
+                        newBox = new Box(3);
+                    }
+                    cont++;
+                }else{
+                    newBox = new Box(0);
+                }
                 this.add(newBox);
                 //gamePanel.add(newBox);
+                //System.out.println("----------------------------------");
+                //System.out.println(newBox.typeClod());
+                //System.out.println("----------------------------------");
                 Globals.matriz[i][j] = newBox;
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+//                if(newBox.typeClod() == 1)
+//                {
+//                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+//                }else
+//                {
+//                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra.png")));
+//                }
+                if(newBox.getType() == 1)
+                {
+                newBox.setText("1");
+                }
+                else if(newBox.getType() == 2)
+                {
+                newBox.setText("2");
+                }
+                else if(newBox.getType() == 3)
+                {
+                newBox.setText("3");
+                }
+                else if(newBox.getType() == 0)
+                {
+                newBox.setText("0");
+                }
+                
                 //newBox.setBackground(Color.decode("#DEB887"));
             }
         }
@@ -79,8 +145,13 @@ public class GameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        newAnt.hip(evt.getKeyCode());
-        //newAnt.walk(evt.getKeyCode());
+        if(newAnt.getAlcoholLevel() >= 10)
+        {
+            newAnt.hip(evt.getKeyCode());
+        }else
+        {
+            newAnt.walk(evt.getKeyCode());
+        }
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments

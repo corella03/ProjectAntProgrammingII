@@ -13,5 +13,18 @@ import javax.swing.JLabel;
  ** 
  **/
 public class Box extends JLabel{
-
+    private int type;
+    public Box(int type) 
+    {
+        super();
+        this.type = type;
+    }
+    public int getType() 
+    {
+        return type;
+    }
+    public void setType(int type) 
+    {
+        this.type = type;
+    }
 }
