@@ -14,7 +14,8 @@ package Logic;
 public interface IAntInterface {
     public void walk(int code);
     public void hip(int code);
-    public void eatClod(int Clod);
-    public void modifyHealth(int life);
-    public void changeAlcoholLevel(int alcoholIngested);
+    public void eatClod(int clod,int evt);
+    public void modifyHealth(int type);
+    public void changeAlcoholLevel(int type);
+    public void changeStatus(int status);
 }

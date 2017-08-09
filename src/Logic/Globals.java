@@ -16,7 +16,6 @@ public class Globals {
     public static int amountColumns;
     public static Box[][] matriz;
     
-    
     //Getters
     public static int getAmountRows()
     {

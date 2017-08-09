@@ -150,19 +150,116 @@ public class Ant implements IAntInterface{
                 break;
         }
     }
+    //Method to eat clod
     @Override
-    public void eatClod(int Clod) {
+    public void eatClod(int clod, int evt) {
+       switch(clod)
+       {
+           case 0:
+               this.walk(evt);
+               break;
+           case 1:
+               break;
+           case 2:
+       }    
+    }
+    //MEthod to modify Health
+    @Override
+    public void modifyHealth(int type) {
+        switch (this.status) {
+            case 1://Is sober
+                switch(type)
+                {
+                    case 1://Typy clod is sugar
+                        this.setHealth(this.health + 10);
+                        break;
+                    case 2://Typy clod is alcohol
+                        this.setHealth(this.health - 10);
+                        break;
+                    default:
+                        break;
+                }   
+                break;
+            case 2://Is drunk
+                switch(type)
+                {
+                    case 1:
+                        this.setHealth(this.health + 10);
+                        break;
+                    case 2:
+                        this.setHealth(this.health - 20);
+                        break;
+                    case 3://Type clod  is Toxic
+                        this.setHealth(this.health - 50);
+                        break;
+                    default:
+                        break;
+                }   
+                break;
+            case 3://Is intoxicated
+                switch(type)
+                {
+                    case 0://Nothing
+                        this.setHealth(this.health + 10);
+                        break;
+                    case 1:
+                        this.setHealth(this.health + 20);
+                        break;
+                    case 2:
+                        this.setHealth(this.health = 0);
+                        break;
+                    case 3:
+                        this.setHealth(this.health = 0);
+                        break;
+                        //Falta validar que si chocz con un borde estando envenenada baja en 20 la salud
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }   
+    }
+    //Method to change Alcohol level
+    @Override
+    public void changeAlcoholLevel(int type) {
         
-        
+        switch(this.status)
+        {
+            case 1://Is sober
+                switch(type)
+                {
+                    case 2:
+                        this.setAlcoholLevel(this.alcoholLevel + 20);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2://Is drunk
+                switch(type)
+                {
+                    case 0:
+                        this.setAlcoholLevel(this.alcoholLevel - 10);
+                        break;
+                    case 1:
+                        this.setAlcoholLevel(this.alcoholLevel - 10);
+                        break;
+                    case 2:
+                        this.setAlcoholLevel(this.alcoholLevel + 20);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
-    public void modifyHealth(int life) {
+    public void changeStatus(int status) {
+        
         
     }
-
-    @Override
-    public void changeAlcoholLevel(int alcoholIngested) {
-        
-    } 
 }

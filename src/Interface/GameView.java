@@ -20,8 +20,9 @@ public class GameView extends javax.swing.JFrame {
     /**
      * Creates new form GameView
      */
-    Ant newAnt = new Ant("Hormigon",100,0, 1);
+    
     Box newBox = null;
+    Ant newAnt = new Ant("Hormigon",100,0, 1);
     //Box[][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
     public GameView() {
         initComponents();
@@ -145,13 +146,21 @@ public class GameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(newAnt.getAlcoholLevel() >= 10)
-        {
-            newAnt.hip(evt.getKeyCode());
-        }else
-        {
-            newAnt.walk(evt.getKeyCode());
+//        if(Globals.newAnt.getAlcoholLevel() >= 10)
+//        {
+//            Globals.newAnt.hip(evt.getKeyCode());
+//        }else
+//        {
+//            Globals.newAnt.walk(evt.getKeyCode());
+//        }
+for (int i = 0; i < Globals.amountRows; i++) {
+            for (int j = 0; j < Globals.amountColumns; j++) {
+        newAnt.eatClod(Globals.matriz[i][j].getType(), evt.getKeyCode());
+                System.out.println(Globals.matriz[i][j].getType());
+        break;
+    }
         }
+        
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
