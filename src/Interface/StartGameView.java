@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package Interface;
+import Logic.Configuration;
+import Logic.FileManager;
 import Logic.Globals;
 import java.net.URL;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 /**
  **
@@ -15,21 +18,50 @@ import javax.swing.ImageIcon;
  ** 
  **/
 public class StartGameView extends javax.swing.JFrame {
+    Configuration configuration;
+    ArrayList<Configuration> config;
     /**
      * Creates new form StartGameView
      */ 
     public StartGameView() {
         initComponents();
         setLocationRelativeTo(null);
+        loadConfig();
     }
     //Load view for start game
     public static void starGameWindow()
     {
-        GameView game = new GameView();
+       GameView game = new GameView();
         game.setVisible(true);
     }
+    public void SaveToTxt(){
+        configuration = new Configuration(nickNameTextField.getText(), Integer.parseInt(rowsComboBox.getSelectedItem().toString()), Integer.parseInt(columnsComboBox.getSelectedItem().toString()));
+        FileManager file = new FileManager();
+        String storage = file.readTextFile("gameconfig.txt");
+        file.writeTextFile("gameconfig.txt", storage + configuration);
+        loadConfig();
+    }
+    public void loadConfig() {
+        FileManager file = new FileManager();
+        String data = file.readTextFile("gameconfig.txt");
+        String[] aux = data.split("\n");
+        if (!data.trim().equals("")) {
+            config = new ArrayList<>(aux.length);
+            for (int i = 0; i < aux.length; i++) {
+                String[] temp = aux[i].split(",");
+                Configuration c = new Configuration();
+                c.setNickname(temp[0]);
+                c.setRows(Integer.parseInt(temp[1].trim()));
+                c.setColumns(Integer.parseInt(temp[2].trim()));
+                config.add(c);
+                System.out.println(c.getNickname());
+                System.out.println(c.getRows());
+                System.out.println(c.getColumns());
+            }
+        }
+    }
     //Method to select stars icons
-    public void selectAint() {
+    public void selectAnt() {
         switch (starsSlider.getValue()) 
         {
             case 1:
@@ -204,6 +236,7 @@ public class StartGameView extends javax.swing.JFrame {
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
         Globals.amountRows = Integer.parseInt((String)this.rowsComboBox.getSelectedItem());
         Globals.amountColumns = Integer.parseInt((String) this.columnsComboBox.getSelectedItem());
+        SaveToTxt();
         starGameWindow();
         this.setVisible(false);
     }//GEN-LAST:event_startGameButtonActionPerformed
