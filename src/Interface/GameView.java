@@ -7,6 +7,7 @@ package Interface;
 import Logic.Ant;
 import Logic.Box;
 import Logic.Globals;
+import Logic.Path;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
@@ -20,102 +21,14 @@ public class GameView extends javax.swing.JFrame {
     /**
      * Creates new form GameView
      */
-    
     Box newBox = null;
     Ant newAnt = new Ant("Hormigon",100,0, 1);
     //Box[][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
-        starGame();
     }
-    //
-    public ArrayList<ArrayList<Integer>> getRandomPositions(int amount, int limitX,int limitY)//limtX
-    {
-        ArrayList<ArrayList<Integer>> clodList = new  ArrayList<>();
-        while(clodList.size() < amount)
-        {
-            int rndX = (int) Math.floor(Math.random()*(0-limitX)+limitX);
-            int rndY  = (int) Math.floor(Math.random()*(0-limitY)+limitY );
-            ArrayList<Integer> indexList = new ArrayList<>();
-            indexList.add(rndX);
-            indexList.add(rndY);
-            if(!clodList.contains(indexList))
-            {
-                clodList.add(indexList);
-            }
-        }
-        return clodList;
-    }
-    //Method for start game
-    private void starGame() {
-        Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
-        //this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        this.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions(15,Globals.amountRows,Globals.amountColumns);      
-        int cont = 0;
-        for (int i = 0; i < Globals.amountRows; i++) {
-            for (int j = 0; j < Globals.amountColumns; j++) {
-                //colocar solo ad
-                ArrayList<Integer> listOfIndex =  new ArrayList<>();
-                listOfIndex.add(i);
-                listOfIndex.add(j);
-                
-                if(randomPositionList.contains(listOfIndex))
-                {
-                    if(cont < 5)
-                    {
-                        newBox = new Box(1);
-                    }
-                    else if(cont < 10)
-                    {
-                        newBox = new Box(2);
-                    }
-                    else if(cont < 15){
-                        newBox = new Box(3);
-                    }
-                    cont++;
-                }else{
-                    newBox = new Box(0);
-                }
-                this.add(newBox);
-                //gamePanel.add(newBox);
-                //System.out.println("----------------------------------");
-                //System.out.println(newBox.typeClod());
-                //System.out.println("----------------------------------");
-                Globals.matriz[i][j] = newBox;
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-//                if(newBox.typeClod() == 1)
-//                {
-//                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-//                }else
-//                {
-//                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra.png")));
-//                }
-                if(newBox.getType() == 1)
-                {
-                newBox.setText("1");
-                }
-                else if(newBox.getType() == 2)
-                {
-                newBox.setText("2");
-                }
-                else if(newBox.getType() == 3)
-                {
-                newBox.setText("3");
-                }
-                else if(newBox.getType() == 0)
-                {
-                newBox.setText("0");
-                }
-                
-                //newBox.setBackground(Color.decode("#DEB887"));
-            }
-        }
-        Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
-        Globals.matriz[Globals.amountRows - 1][Globals.amountColumns - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-        this.paintAll(this.getGraphics());
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

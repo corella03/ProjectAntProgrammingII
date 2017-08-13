@@ -7,6 +7,7 @@ package Interface;
 import Logic.Configuration;
 import Logic.FileManager;
 import Logic.Globals;
+import Logic.Path;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -31,7 +32,9 @@ public class StartGameView extends javax.swing.JFrame {
     //Load view for start game
     public static void starGameWindow()
     {
+        Path path = new Path();
        GameView game = new GameView();
+       game = (GameView) path.starGame();
         game.setVisible(true);
     }
     public void SaveToTxt(){
