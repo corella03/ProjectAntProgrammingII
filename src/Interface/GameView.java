@@ -8,7 +8,6 @@ import Logic.Ant;
 import Logic.Box;
 import Logic.Globals;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -50,8 +49,8 @@ public class GameView extends javax.swing.JFrame {
     //Method for start game
     private void starGame() {
         Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
-        //this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        this.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
+        this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
+        //this.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
         ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions(15,Globals.amountRows,Globals.amountColumns);      
         int cont = 0;
         for (int i = 0; i < Globals.amountRows; i++) {
@@ -78,8 +77,8 @@ public class GameView extends javax.swing.JFrame {
                 }else{
                     newBox = new Box(0);
                 }
-                this.add(newBox);
-                //gamePanel.add(newBox);
+                //this.add(newBox);
+                gamePanel.add(newBox);
                 //System.out.println("----------------------------------");
                 //System.out.println(newBox.typeClod());
                 //System.out.println("----------------------------------");
@@ -92,24 +91,23 @@ public class GameView extends javax.swing.JFrame {
 //                {
 //                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra.png")));
 //                }
-                if(newBox.getType() == 1)
-                {
-                newBox.setText("1");
-                }
-                else if(newBox.getType() == 2)
-                {
-                newBox.setText("2");
-                }
-                else if(newBox.getType() == 3)
-                {
-                newBox.setText("3");
-                }
-                else if(newBox.getType() == 0)
-                {
-                newBox.setText("0");
-                }
-                
+                switch (newBox.getType()) {
+                    case 1:
+                        newBox.setText("1");
+                        break;
+                    case 2:
+                        newBox.setText("2");
+                        break;
+                    case 3:
+                        newBox.setText("3");
+                        break;
                 //newBox.setBackground(Color.decode("#DEB887"));
+                    case 0:
+                        newBox.setText("0");
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
@@ -125,6 +123,8 @@ public class GameView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gamePanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -132,15 +132,32 @@ public class GameView extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
+        gamePanel.setLayout(gamePanelLayout);
+        gamePanelLayout.setHorizontalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 556, Short.MAX_VALUE)
+        );
+        gamePanelLayout.setVerticalGroup(
+            gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 454, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 491, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,5 +213,6 @@ for (int i = 0; i < Globals.amountRows; i++) {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel gamePanel;
     // End of variables declaration//GEN-END:variables
 }
