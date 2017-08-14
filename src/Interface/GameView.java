@@ -6,8 +6,7 @@
 package Interface;
 import Logic.Ant;
 import Logic.Box;
-import Logic.Globals;
-import java.util.ArrayList;
+import Logic.Path;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -19,101 +18,17 @@ public class GameView extends javax.swing.JFrame {
     /**
      * Creates new form GameView
      */
-    
     Box newBox = null;
     Ant newAnt = new Ant("Hormigon",100,0, 1);
+    Path path = new Path();
     //Box[][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
-        starGame();
-    }
-    //
-    public ArrayList<ArrayList<Integer>> getRandomPositions(int amount, int limitX,int limitY)//limtX
-    {
-        ArrayList<ArrayList<Integer>> clodList = new  ArrayList<>();
-        while(clodList.size() < amount)
-        {
-            int rndX = (int) Math.floor(Math.random()*(0-limitX)+limitX);
-            int rndY  = (int) Math.floor(Math.random()*(0-limitY)+limitY );
-            ArrayList<Integer> indexList = new ArrayList<>();
-            indexList.add(rndX);
-            indexList.add(rndY);
-            if(!clodList.contains(indexList))
-            {
-                clodList.add(indexList);
-            }
+        this.setSize(1600, 1200);
+        path.starGame(this.gamePanel);
         }
-        return clodList;
-    }
-    //Method for start game
-    private void starGame() {
-        Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
-        this.gamePanel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        //this.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions(15,Globals.amountRows,Globals.amountColumns);      
-        int cont = 0;
-        for (int i = 0; i < Globals.amountRows; i++) {
-            for (int j = 0; j < Globals.amountColumns; j++) {
-                //colocar solo ad
-                ArrayList<Integer> listOfIndex =  new ArrayList<>();
-                listOfIndex.add(i);
-                listOfIndex.add(j);
-                
-                if(randomPositionList.contains(listOfIndex))
-                {
-                    if(cont < 5)
-                    {
-                        newBox = new Box(1);
-                    }
-                    else if(cont < 10)
-                    {
-                        newBox = new Box(2);
-                    }
-                    else if(cont < 15){
-                        newBox = new Box(3);
-                    }
-                    cont++;
-                }else{
-                    newBox = new Box(0);
-                }
-                //this.add(newBox);
-                gamePanel.add(newBox);
-                //System.out.println("----------------------------------");
-                //System.out.println(newBox.typeClod());
-                //System.out.println("----------------------------------");
-                Globals.matriz[i][j] = newBox;
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-//                if(newBox.typeClod() == 1)
-//                {
-//                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-//                }else
-//                {
-//                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra.png")));
-//                }
-                switch (newBox.getType()) {
-                    case 1:
-                        newBox.setText("1");
-                        break;
-                    case 2:
-                        newBox.setText("2");
-                        break;
-                    case 3:
-                        newBox.setText("3");
-                        break;
-                //newBox.setBackground(Color.decode("#DEB887"));
-                    case 0:
-                        newBox.setText("0");
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
-        Globals.matriz[Globals.amountRows - 1][Globals.amountColumns - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
-        this.paintAll(this.getGraphics());
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,6 +39,7 @@ public class GameView extends javax.swing.JFrame {
     private void initComponents() {
 
         gamePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -131,53 +47,37 @@ public class GameView extends javax.swing.JFrame {
                 formKeyPressed(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        gamePanel.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 556, Short.MAX_VALUE)
+            .addGap(0, 714, Short.MAX_VALUE)
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 454, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(244, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
+        getContentPane().add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 1200));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-//        if(Globals.newAnt.getAlcoholLevel() >= 10)
-//        {
-//            Globals.newAnt.hip(evt.getKeyCode());
-//        }else
-//        {
-//            Globals.newAnt.walk(evt.getKeyCode());
-//        }
-for (int i = 0; i < Globals.amountRows; i++) {
-            for (int j = 0; j < Globals.amountColumns; j++) {
-        newAnt.eatClod(Globals.matriz[i][j].getType(), evt.getKeyCode());
-                System.out.println(Globals.matriz[i][j].getType());
-        break;
-    }
-        }
         
+        if(newAnt.getAlcoholLevel() >= 10)
+        {
+            newAnt.hip(evt.getKeyCode());
+        }else
+        {
+            newAnt.walk(evt.getKeyCode());
+        } 
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
@@ -214,5 +114,6 @@ for (int i = 0; i < Globals.amountRows; i++) {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel gamePanel;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
