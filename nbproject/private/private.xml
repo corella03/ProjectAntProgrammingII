@@ -5,7 +5,7 @@
             <url>src/Logic/Ant.java</url>
             <bookmark id="1">
                 <name/>
-                <line>199</line>
+                <line>212</line>
                 <key/>
             </bookmark>
         </file>
@@ -15,6 +15,7 @@
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Interface/GameView.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Logic/Ant.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Logic/IAntInterface.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Logic/Box.java</file>
         </group>
     </open-files>
 </project-private>

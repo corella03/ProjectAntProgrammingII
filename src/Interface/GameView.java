@@ -27,13 +27,14 @@ public class GameView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         path.starGame(this.gamePanel);
-        this.setSize(1600, 1200);
-        this.gamePanel.setSize(714, 349);
+        
     }
     public void progressBar()
     {
         healthProgressBar.setValue(newAnt.getHealth());
         AlcoholProgressBar.setValue(newAnt.getAlcoholLevel());
+        System.out.println(newAnt.getHealth());
+        System.out.println(newAnt.getAlcoholLevel());
         if(newAnt.getStatus() == 1 || newAnt.getStatus() == 2)
         {
             toxicProgressBar.setValue(0);
@@ -70,22 +71,26 @@ public class GameView extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        gamePanel.setBackground(new java.awt.Color(255, 255, 255));
+        gamePanel.setBackground(new java.awt.Color(105, 30, 1));
+        gamePanel.setMaximumSize(new java.awt.Dimension(850, 430));
+        gamePanel.setMinimumSize(new java.awt.Dimension(850, 430));
+        gamePanel.setName(""); // NOI18N
 
         javax.swing.GroupLayout gamePanelLayout = new javax.swing.GroupLayout(gamePanel);
         gamePanel.setLayout(gamePanelLayout);
         gamePanelLayout.setHorizontalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 714, Short.MAX_VALUE)
+            .addGap(0, 850, Short.MAX_VALUE)
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
 
-        getContentPane().add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
+        getContentPane().add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 850, 430));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setOpaque(false);
 
         healthProgressBar.setForeground(new java.awt.Color(0, 204, 0));
 
@@ -93,10 +98,13 @@ public class GameView extends javax.swing.JFrame {
 
         toxicProgressBar.setForeground(new java.awt.Color(153, 0, 153));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Health:");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Alcohol");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Toxic");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -120,19 +128,19 @@ public class GameView extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(healthProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addComponent(healthProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AlcoholProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addComponent(AlcoholProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(toxicProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addComponent(toxicProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 40, 270, 450));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 110, 270, 450));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 1200));
@@ -141,14 +149,20 @@ public class GameView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         
-        if(newAnt.changeStatus()== 2)
-        {
-            progressBar();
-            newAnt.hip(evt.getKeyCode());
-        }else
-        {
-            progressBar();
-            newAnt.walk(evt.getKeyCode());
+        switch (newAnt.changeStatus()) {
+            case 1:
+                progressBar();
+                newAnt.walk(evt.getKeyCode());
+                break;
+            case 2:
+                progressBar();
+                newAnt.hip(evt.getKeyCode());
+                break;
+            case 3:
+                System.out.println("esta envenenada");
+                break;
+            default:
+                break;
         }
         
         

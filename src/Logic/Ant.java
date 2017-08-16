@@ -145,11 +145,11 @@ public class Ant implements IAntInterface{
     public void hip(int code) {
         
         int randomMove = (int) Math.floor(Math.random()*(37-41)+41);
-        System.out.println(randomMove);
         switch (code) 
         {
             case 37:
                 walk(randomMove);
+                        
                 break;
             case 38:
                 walk(randomMove);
@@ -172,8 +172,7 @@ public class Ant implements IAntInterface{
                 changeAlcoholLevel(clod);
                 break;
             case 2:
-                modifyHealth(clod);                changeAlcoholLevel(clod);
-
+                modifyHealth(clod);                
                 changeAlcoholLevel(clod);
                 break;
             case 3:
