@@ -84,10 +84,10 @@ public class GameView extends javax.swing.JFrame {
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
-        getContentPane().add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 850, 430));
+        getContentPane().add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 850, 540));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);

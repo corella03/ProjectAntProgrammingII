@@ -84,12 +84,12 @@ public class Ant implements IAntInterface{
                 //Arriba
                 if (countRows > 0)
                 {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
                     
                     countRows--;
                     this.eatClod(Globals.matriz[countRows][countColumns].getType());
                     Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                 } else {
                     errorSound();
                 }
@@ -98,12 +98,12 @@ public class Ant implements IAntInterface{
                 //Izquierda
                 if (countColumns > 0) 
                 {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
                     
                     countColumns--;
                     this.eatClod(Globals.matriz[countRows][countColumns].getType());
                     Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                 }else {
                     errorSound();
                 }
@@ -112,12 +112,12 @@ public class Ant implements IAntInterface{
                 //Derecha
                 if (countColumns < Globals.amountColumns - 1) 
                 {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
                     
                     countColumns++;
                     this.eatClod(Globals.matriz[countRows][countColumns].getType());
                     Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                 } else {
                     errorSound();
                 }
@@ -126,12 +126,12 @@ public class Ant implements IAntInterface{
                 //Abajo
                 if (countRows < Globals.amountRows - 1) 
                 {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
                     
                     countRows++;
                     this.eatClod(Globals.matriz[countRows][countColumns].getType());
                     Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                 }else {
                     errorSound();
                 }
