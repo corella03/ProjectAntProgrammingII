@@ -7,11 +7,13 @@ package Logic;
 
 import java.util.ArrayList;
 import javax.swing.JPanel;
-
 /**
- *
- * @author Ana Elena Ulate Salas
- */
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Ana Elena Ulate Salas
+ ** @date 2017-08-04
+ ** 
+ **/
 public class Path {
     int column;
     int row;

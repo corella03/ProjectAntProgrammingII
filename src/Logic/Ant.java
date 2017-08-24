@@ -5,10 +5,11 @@
  */
 package Logic;
 import java.applet.AudioClip;
+import java.sql.Array;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Ana Elena Ulate
+ ** @author Ana Elena Ulate Salas
  ** @date 2017-08-04
  ** 
  **/
@@ -18,10 +19,10 @@ public class Ant implements IAntInterface{
     private int health ;
     private int alcoholLevel;
     private int status;
-    int countRows = 0;
-    int countColumns = 0;
-    int anterior = 0;
-static int after;
+    //This variables used only in this class
+    private int countRows = 0;
+    private int countColumns = 0;
+    private int anterior = 0;
     public Ant(String nickName, int health, int alcoholLevel, int status) {
         this.nickName = nickName;
         this.health = health;
@@ -75,7 +76,7 @@ static int after;
         errorSound.play();
     }
     //Method to move the Ant
-    @Override
+@Override
     public void walk(int code) {
         
         if(anterior  != devolverse(code))
@@ -88,7 +89,6 @@ static int after;
                     if (countRows > 0)
                     {
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-
                         countRows--;
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
@@ -102,7 +102,6 @@ static int after;
                     if (countColumns > 0) 
                     {
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-
                         countColumns--;
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);

@@ -11,12 +11,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 /**
- *
- * @author Luis Alonso Corella Chavez
- * @author  Ana Elena Ulate Salas
- */
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Ana Elena Ulate Salas
+ ** @date 2017-08-04
+ ** 
+ **/
 public class FileManager {
 
     public String readTextFile(String fileName) {

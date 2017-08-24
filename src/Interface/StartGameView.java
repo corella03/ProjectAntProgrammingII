@@ -7,14 +7,13 @@ package Interface;
 import Logic.Configuration;
 import Logic.FileManager;
 import Logic.Globals;
-import Logic.Path;
 import java.net.URL;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Ana Elena Ulate
+ ** @author Ana Elena Ulate Salas
  ** @date 2017-08-01
  ** 
  **/

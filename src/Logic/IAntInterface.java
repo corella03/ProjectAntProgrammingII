@@ -7,7 +7,7 @@ package Logic;
 /**
  **
  ** @author Luis Alonso Corella Chaves
- ** @author Ana Elena Ulate
+ ** @author Ana Elena Ulate Salas
  ** @date 2017-08-04
  ** 
  **/

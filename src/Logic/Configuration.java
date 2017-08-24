@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package Logic;
-
 /**
- *
- * @author Luis Alonso Corella Chavez
- * @author Ana Elena Ulate Salas
- */
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Ana Elena Ulate Salas
+ ** @date 2017-08-04
+ ** 
+ **/
 public class Configuration {
     private String Nickname;
     private int rows;
