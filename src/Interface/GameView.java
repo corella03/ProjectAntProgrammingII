@@ -6,8 +6,8 @@
 package Interface;
 import Logic.Ant;
 import Logic.Box;
-import Logic.Globals;
 import Logic.Path;
+import javax.swing.JOptionPane;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -28,6 +28,12 @@ public class GameView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         path.starGame(this.gamePanel);
         
+    }
+    public void gameOver()
+    {
+        StartGameView star = new StartGameView();
+        star.setVisible(true);
+        this.setVisible(false);
     }
     public void progressBar()
     {
@@ -93,6 +99,9 @@ public class GameView extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
 
         healthProgressBar.setForeground(new java.awt.Color(0, 204, 0));
+        healthProgressBar.setMaximum(300);
+        healthProgressBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        healthProgressBar.setEnabled(false);
 
         AlcoholProgressBar.setForeground(new java.awt.Color(204, 0, 0));
 
@@ -148,23 +157,28 @@ public class GameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        
-        switch (newAnt.changeStatus()) {
-            case 1:
-                progressBar();
-                newAnt.walk(evt.getKeyCode());
-                break;
-            case 2:
-                progressBar();
-                newAnt.hip(evt.getKeyCode());
-                break;
-            case 3:
-                System.out.println("esta envenenada");
-                break;
-            default:
-                break;
+        if(this.newAnt.getHealth() > 0)
+        {
+            switch (newAnt.changeStatus()) {
+                case 1:
+                    progressBar();
+                    newAnt.walk(evt.getKeyCode());
+                    break;
+                case 2:
+                    progressBar();
+                    newAnt.hip(evt.getKeyCode());
+                    break;
+                case 3:
+                    System.out.println("esta envenenada");
+                    break;
+                default:
+                    break;
+            }
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "GAME OVER");
+            this.gameOver();
         }
-        
         
     }//GEN-LAST:event_formKeyPressed
     /**

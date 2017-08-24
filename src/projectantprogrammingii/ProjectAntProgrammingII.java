@@ -5,7 +5,6 @@
  */
 package projectantprogrammingii;
 import Interface.StartGameView;
-import Logic.Box;
 /**
  **
  ** @author Luis Alonso Corella Chaves

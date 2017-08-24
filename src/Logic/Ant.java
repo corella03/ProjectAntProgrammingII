@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package Logic;
-
 import java.applet.AudioClip;
-
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -17,12 +15,13 @@ import java.applet.AudioClip;
 public class Ant implements IAntInterface{
     private String nickName;
     private int path;//talvez se necesiten 2 listas 1 para filas y otras para columnas
-    private int health;
+    private int health ;
     private int alcoholLevel;
     private int status;
     int countRows = 0;
     int countColumns = 0;
-
+    int anterior = 0;
+static int after;
     public Ant(String nickName, int health, int alcoholLevel, int status) {
         this.nickName = nickName;
         this.health = health;
@@ -78,78 +77,81 @@ public class Ant implements IAntInterface{
     //Method to move the Ant
     @Override
     public void walk(int code) {
-         switch (code) 
+        
+        if(anterior  != devolverse(code))
         {
-            case 38:
-                //Arriba
-                if (countRows > 0)
-                {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-                    
-                    countRows--;
-                    this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                    Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
-                } else {
-                    errorSound();
-                }
-                break;
-            case 37:
-                //Izquierda
-                if (countColumns > 0) 
-                {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-                    
-                    countColumns--;
-                    this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                    Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
-                }else {
-                    errorSound();
-                }
-                break;
-            case 39:
-                //Derecha
-                if (countColumns < Globals.amountColumns - 1) 
-                {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-                    
-                    countColumns++;
-                    this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                    Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
-                } else {
-                    errorSound();
-                }
-                break;
-            case 40:
-                //Abajo
-                if (countRows < Globals.amountRows - 1) 
-                {
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-                    
-                    countRows++;
-                    this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                    Globals.matriz[countRows][countColumns].setType(0);
-                    Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
-                }else {
-                    errorSound();
-                }
-                break;
-            default:
-                break;
+            anterior = code;
+            switch (code) 
+            { 
+                case 38:
+                    //Arriba
+                    if (countRows > 0)
+                    {
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+
+                        countRows--;
+                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                        Globals.matriz[countRows][countColumns].setType(0);
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    } else {
+                        errorSound();
+                    }
+                    break;
+                case 37:
+                    //Izquierda
+                    if (countColumns > 0) 
+                    {
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+
+                        countColumns--;
+                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                        Globals.matriz[countRows][countColumns].setType(0);
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    }else {
+                        errorSound();
+                    }
+                    break;
+                case 39:
+                    //Derecha
+                    if (countColumns < Globals.amountColumns - 1) 
+                    {
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                        countColumns++;
+                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                        Globals.matriz[countRows][countColumns].setType(0);
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    } else {
+                        errorSound();
+                    }
+                    break;
+                case 40:
+                    //Abajo
+                    if (countRows < Globals.amountRows - 1) 
+                    {
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                        countRows++;
+                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                        Globals.matriz[countRows][countColumns].setType(0);
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+                    }else {
+                        errorSound();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            errorSound();
         }
     }
     //Method Hip
     @Override
     public void hip(int code) {
-        
         int randomMove = (int) Math.floor(Math.random()*(37-41)+41);
         switch (code) 
         {
             case 37:
-                walk(randomMove);
-                        
+                walk(randomMove);    
                 break;
             case 38:
                 walk(randomMove);
@@ -182,6 +184,27 @@ public class Ant implements IAntInterface{
             default:
                 break;
         }
+    }
+    public int devolverse(int code)
+    {
+        int valor = 0;
+        switch (code) {
+            case 38:
+                valor = 40;
+                break;
+            case 40:
+                valor = 38;
+                break;
+            case 37:
+                valor = 39;
+                break;
+            case 39:
+                valor = 37;
+                break;
+            default:
+                break;
+        }
+        return valor;
     }
     //Method to eat clod
     @Override
