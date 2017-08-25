@@ -6,7 +6,6 @@
 package Interface;
 import Logic.Ant;
 import Logic.Box;
-import Logic.Globals;
 import Logic.Path;
 import javax.swing.JOptionPane;
 /**
@@ -16,19 +15,17 @@ import javax.swing.JOptionPane;
  ** @date 2017-08-01 * 
  **
  **/
-public class GameView extends javax.swing.JFrame {
+public class GameView extends javax.swing.JFrame {                
     /**
-     * Creates new form GameView
+     * Creates new form Game
      */
     Box newBox = null;
     Ant newAnt = new Ant("Hormigon",100,0,1);
     Path path = new Path();
-    //Box[][] matriz = new Box[Globals.amountRows][Globals.amountColumns];
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
         path.starGame(this.gamePanel);
-        
     }
     public void gameOver()
     {
@@ -71,12 +68,15 @@ public class GameView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1600, 1120));
+        setMinimumSize(new java.awt.Dimension(1600, 1120));
+        setPreferredSize(new java.awt.Dimension(1600, 1120));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         gamePanel.setBackground(new java.awt.Color(105, 30, 1));
         gamePanel.setMaximumSize(new java.awt.Dimension(850, 430));
@@ -91,10 +91,11 @@ public class GameView extends javax.swing.JFrame {
         );
         gamePanelLayout.setVerticalGroup(
             gamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
-        getContentPane().add(gamePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 850, 430));
+        getContentPane().add(gamePanel);
+        gamePanel.setBounds(160, 110, 850, 540);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
@@ -150,10 +151,12 @@ public class GameView extends javax.swing.JFrame {
                 .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 110, 270, 450));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(1020, 110, 270, 450);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 1200));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1600, 1140);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -180,7 +183,6 @@ public class GameView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "GAME OVER");
             this.gameOver();
         }
-        
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
@@ -208,6 +210,10 @@ public class GameView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GameView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

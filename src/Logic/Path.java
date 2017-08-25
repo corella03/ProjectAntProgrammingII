@@ -21,51 +21,15 @@ public class Path {
     //GameView game = new GameView();
     public Path() {
     }
-    public void placeObstacules(int obs){
-        int cont = 0;
-        while(cont <= obs){
-         setAlcohol();
-         setSugar();
-         setPoison();
-         cont++; 
-        }   
-    }
-    public void setAlcohol(){
-        column = (int)(Math.random()*(1+Globals.getAmountColumns()));
-        row = (int) (Math.random()*(1+Globals.getAmountRows()));
-        Globals.matriz[0][4].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Beer-icon.png")));
-        System.out.println(column);
-        System.out.println(row);
-        System.out.println("---");
-   }
-    public void setSugar(){
-        column = (int)(Math.random()*(1+Globals.getAmountColumns()));
-        row = (int) (Math.random()*(1+Globals.getAmountRows()));
-        Globals.matriz[3][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Sugar-icon.png")));
-        System.out.println(column);
-        System.out.println(row);
-        System.out.println("***");
-    }
-    public void setPoison(){
-        column = (int) (Math.random()*(1+Globals.getAmountColumns()));
-        row = (int) (Math.random()*(1+Globals.getAmountRows()));
-        Globals.matriz[2][5].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Toxic-icon.png")));
-        System.out.println(column);
-        System.out.println(row);
-        System.out.println("+++");
-   }
-    public ArrayList<ArrayList<Integer>> getRandomPositions(int amount, int limitX,int limitY)
-    {
+    public ArrayList<ArrayList<Integer>> getRandomPositions(int amount, int limitX,int limitY){
         ArrayList<ArrayList<Integer>> clodList = new  ArrayList<>();
-        while(clodList.size() < amount)
-        {
+        while(clodList.size() < amount){
             int rndX = (int) Math.floor(Math.random()*(0-limitX)+limitX);
             int rndY  = (int) Math.floor(Math.random()*(0-limitY)+limitY );
             ArrayList<Integer> indexList = new ArrayList<>();
             indexList.add(rndX);
             indexList.add(rndY);
-            if(!clodList.contains(indexList))
-            {
+            if(!clodList.contains(indexList)){
                 clodList.add(indexList);
             }
         }
@@ -82,45 +46,39 @@ public class Path {
                 ArrayList<Integer> listOfIndex =  new ArrayList<>();
                 listOfIndex.add(i);
                 listOfIndex.add(j);
-                if(randomPositionList.contains(listOfIndex))
-                {
-                    if(cont < 5)
-                    {
+                if(randomPositionList.contains(listOfIndex)){
+                    if(cont < 5){
                         newBox = new Box(1);
                     }
-                    else if(cont < 10)
-                    {
+                    else if(cont < 10){
                         newBox = new Box(2);
                     }
                     else if(cont < 15){
                         newBox = new Box(3);
                     }
                     cont++;
-                }else{
+                }
+                else{
                     newBox = new Box(0);
                 }
                 panel.add(newBox);
                 Globals.matriz[i][j] = newBox;
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-                if(newBox.getType() == 1)
-                {
-                newBox.setText("1");
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                if(newBox.getType() == 1){
+                    newBox.setIcon((new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg"))));
                 }
-                else if(newBox.getType() == 2)
-                {
-                newBox.setText("2");
+                else if(newBox.getType() == 2){
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
                 }
-                else if(newBox.getType() == 3)
-                {
-                newBox.setText("3");
+                else if(newBox.getType() == 3){
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
                 }
-                else if(newBox.getType() == 0)
-                {
+                else if(newBox.getType() == 0){
                 newBox.setText("0");
                 }
             }
         }
-        Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Aint.png")));
+        Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
         Globals.matriz[Globals.amountRows - 1][Globals.amountColumns - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
         panel.paintAll(panel.getGraphics());
     }
