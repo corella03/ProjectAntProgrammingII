@@ -5,7 +5,7 @@
  */
 package Logic;
 import java.applet.AudioClip;
-import java.sql.Array;
+import javax.swing.JOptionPane;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -19,10 +19,12 @@ public class Ant implements IAntInterface{
     private int health ;
     private int alcoholLevel;
     private int status;
+    private boolean toxic = false;
     //This variables used only in this class
     private int countRows = 0;
     private int countColumns = 0;
-    private int anterior = 0;
+    private int previous = 0;
+    int count = 0;
     public Ant(String nickName, int health, int alcoholLevel, int status) {
         this.nickName = nickName;
         this.health = health;
@@ -50,6 +52,11 @@ public class Ant implements IAntInterface{
         return status;
     }
 
+    public boolean isToxic() {
+        return toxic;
+    }
+    
+
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
@@ -69,6 +76,11 @@ public class Ant implements IAntInterface{
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public void setToxic(boolean toxic) {
+        this.toxic = toxic;
+    }
+    
     public void errorSound() 
     {
         AudioClip errorSound;
@@ -79,16 +91,16 @@ public class Ant implements IAntInterface{
 @Override
     public void walk(int code) {
         
-        if(anterior  != devolverse(code))
+        if(previous  != getBack(code))
         {
-            anterior = code;
+            previous = code;
             switch (code) 
             { 
                 case 38:
                     //Arriba
                     if (countRows > 0)
                     {
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
 
                         countRows--;
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
@@ -102,7 +114,7 @@ public class Ant implements IAntInterface{
                     //Izquierda
                     if (countColumns > 0) 
                     {
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
 
                         countColumns--;
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
@@ -116,7 +128,7 @@ public class Ant implements IAntInterface{
                     //Derecha
                     if (countColumns < Globals.amountColumns - 1) 
                     {
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
 
                         countColumns++;
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
@@ -130,7 +142,7 @@ public class Ant implements IAntInterface{
                     //Abajo
                     if (countRows < Globals.amountRows - 1) 
                     {
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
 
                         countRows++;
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
@@ -166,6 +178,36 @@ public class Ant implements IAntInterface{
                 walk(randomMove);
                 break;
         }
+    }//Method to eat clod
+    @Override
+    public void eatClod(int clod) {
+       switch(clod)
+       {
+           case 0:
+               methodToEat(clod);
+               break;
+           case 1:
+               methodToEat(clod);
+               break;
+           case 2:
+               methodToEat(clod);
+               break;
+           case 3:
+               methodToEat(clod);
+               break;
+            default:
+            break;
+       }    
+    }
+    public void changeToxicStatus()
+    {
+        if(count > 3)
+        {
+            this.toxic = false;   
+            count = 0; 
+        }else{
+            count++;                 
+        }
     }
     public void methodToEat(int clod){
         switch (clod) {
@@ -182,62 +224,15 @@ public class Ant implements IAntInterface{
                 break;
             case 3:
                 modifyHealth(clod);
-                changeAlcoholLevel(clod);
                 break;
             default:
                 break;
         }
-    }
-    public int devolverse(int code)
-    {
-        int valor = 0;
-        switch (code) {
-            case 38:
-                valor = 40;
-                break;
-            case 40:
-                valor = 38;
-                break;
-            case 37:
-                valor = 39;
-                break;
-            case 39:
-                valor = 37;
-                break;
-            default:
-                break;
-        }
-        return valor;
-    }
-    //Method to eat clod
-    @Override
-    public void eatClod(int clod) {
-       switch(clod)
-       {
-           case 0:
-               methodToEat(clod);
-               //this.walk(evt);
-               break;
-           case 1:
-               methodToEat(clod);
-               //this.walk(evt);
-               break;
-           case 2:
-               methodToEat(clod);
-               //this.walk(evt);
-               break;
-           case 3:
-               methodToEat(clod);
-               //this.walk(evt);
-               break;
-            default:
-                break;
-       }    
     }
     //MEthod to modify Health
     @Override
     public void modifyHealth(int type) {
-        switch (this.status) {
+        switch (this.changeStatus()) {
             case 1://Is sober
                 switch(type)
                 {
@@ -252,50 +247,78 @@ public class Ant implements IAntInterface{
                 }   
                 break;
             case 2://Is drunk
-                switch(type)
+                if(this.toxic == false)
                 {
-                    case 1:
-                        this.setHealth(this.health + 10);
-                        break;
-                    case 2:
-                        this.setHealth(this.health - 20);
-                        break;
-                    case 3://Type clod  is Toxic
-                        this.setHealth(this.health - 50);
-                        break;
-                    default:
-                        break;
-                }   
-                break;
-            case 3://Is intoxicated
-                switch(type)
-                {
-                    case 0://Nothing
-                        this.setHealth(this.health + 10);
-                        break;
-                    case 1:
-                        this.setHealth(this.health + 20);
-                        break;
-                    case 2:
-                        this.setHealth(this.health = 0);
-                        break;
-                    case 3:
-                        this.setHealth(this.health = 0);
-                        break;
-                        //Falta validar que si chocz con un borde estando envenenada baja en 20 la salud
-                    default:
-                        break;
+                    switch(type)
+                    {
+                        case 1:
+                            this.setHealth(this.health + 10);
+                            break;
+                        case 2:
+                            this.setHealth(this.health - 20);
+                            break;
+                        case 3://Type clod  is Toxic
+                            this.setHealth(this.health - 50);
+                            this.toxic = true;
+                            break;
+                        default:
+                            break;
+                    }   
+                    break;   
                 }
+            case 3: 
+                if(this.toxic == true) 
+                {
+                    switch(type)
+                    {
+                        case 0://Nothing
+                            this.setHealth(this.health + 10);
+                            break;
+                        case 1:
+                            this.setHealth(this.health + 20);
+                            break;
+                        case 2:
+                            this.setHealth(this.health = 0);
+                            break;
+                        case 3:
+                            this.setHealth(this.health = 0);
+                            break;
+                            //Falta validar que si chocz con un borde estando envenenada baja en 20 la salud
+                        default:
+                            break;
+                    }
+                break;
+                } 
+            default:
+            break;
+        }   
+    }
+    public int getBack(int code)
+    {
+        int data = 0;
+        switch (code) {
+            case 38:
+                data = 40;
+                break;
+            case 40:
+                data = 38;
+                break;
+            case 37:
+                data = 39;
+                break;
+            case 39:
+                data = 37;
                 break;
             default:
                 break;
-        }   
+        }
+        return data;
     }
     //Method to change Alcohol level
     @Override
     public void changeAlcoholLevel(int type) {
         
-        switch(this.status)
+        switch(this.changeStatus())
         {
             case 1://Is sober
                 switch(type)
@@ -329,15 +352,22 @@ public class Ant implements IAntInterface{
     }
     @Override
     public int changeStatus() {
-        if(this.alcoholLevel == 0)
+        if(this.health <= 0)
         {
-            this.status = 1;
+            this.status = 0;// esta muerta
+        }
+        else if(this.toxic == true)
+        {
+            this.status = 3;//envenenada
+            changeToxicStatus();
         }
         else if(this.alcoholLevel > 0)
         {
-            this.status = 2;
-        }else{
-            this.status = 3;
+            this.status = 2;//Ebria
+        }
+        else if(this.health == 0)
+        {
+            this.status = 1;//Sobria
         }
        return this.status;
     }

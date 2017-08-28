@@ -26,6 +26,7 @@ public class GameView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         path.starGame(this.gamePanel);
+        progressBar();
     }
     public void gameOver()
     {
@@ -37,13 +38,11 @@ public class GameView extends javax.swing.JFrame {
     {
         healthProgressBar.setValue(newAnt.getHealth());
         AlcoholProgressBar.setValue(newAnt.getAlcoholLevel());
-        System.out.println(newAnt.getHealth());
-        System.out.println(newAnt.getAlcoholLevel());
-        if(newAnt.getStatus() == 1 || newAnt.getStatus() == 2)
+        if(newAnt.changeStatus() != 3)
         {
             toxicProgressBar.setValue(0);
         }
-        else if(newAnt.getStatus() == 3)
+        if(newAnt.getStatus() == 3)
         {
             toxicProgressBar.setValue(100);
         }
@@ -68,9 +67,7 @@ public class GameView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1600, 1120));
         setMinimumSize(new java.awt.Dimension(1600, 1120));
-        setPreferredSize(new java.awt.Dimension(1600, 1120));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -78,7 +75,7 @@ public class GameView extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        gamePanel.setBackground(new java.awt.Color(105, 30, 1));
+        gamePanel.setBackground(new java.awt.Color(255, 255, 255));
         gamePanel.setMaximumSize(new java.awt.Dimension(850, 430));
         gamePanel.setMinimumSize(new java.awt.Dimension(850, 430));
         gamePanel.setName(""); // NOI18N
@@ -161,28 +158,27 @@ public class GameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        if(this.newAnt.getHealth() > 0)
-        {
             switch (newAnt.changeStatus()) {
+                case 0:
+                    JOptionPane.showMessageDialog(null, "GAME OVER");
+                    this.gameOver();
+                    break;
                 case 1:
                     progressBar();
                     newAnt.walk(evt.getKeyCode());
                     break;
                 case 2:
                     progressBar();
-                    newAnt.hip(evt.getKeyCode());
+                    newAnt.walk(evt.getKeyCode());
+                    //newAnt.hip(evt.getKeyCode());
                     break;
                 case 3:
-                    System.out.println("esta envenenada");
+                    progressBar();
+                    newAnt.walk(evt.getKeyCode());
                     break;
                 default:
                     break;
             }
-        }else
-        {
-            JOptionPane.showMessageDialog(null, "GAME OVER");
-            this.gameOver();
-        }
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
@@ -216,6 +212,7 @@ public class GameView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new GameView().setVisible(true);
             }

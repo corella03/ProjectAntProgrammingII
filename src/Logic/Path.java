@@ -39,7 +39,7 @@ public class Path {
     public void starGame(JPanel panel) {
         Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
         panel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions(15,Globals.amountRows,Globals.amountColumns);      
+        ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions(Globals.amountClods,Globals.amountRows,Globals.amountColumns);      
         int cont = 0;
         for (int i = 0; i < Globals.amountRows; i++) {
             for (int j = 0; j < Globals.amountColumns; j++) {
@@ -47,13 +47,14 @@ public class Path {
                 listOfIndex.add(i);
                 listOfIndex.add(j);
                 if(randomPositionList.contains(listOfIndex)){
-                    if(cont < 5){
+                    int typeAmountClod = Globals.amountClods / 3;
+                    if(cont < typeAmountClod){
                         newBox = new Box(1);
                     }
-                    else if(cont < 10){
+                    else if(cont < (typeAmountClod * 2)){
                         newBox = new Box(2);
                     }
-                    else if(cont < 15){
+                    else if(cont < (typeAmountClod * 3)){
                         newBox = new Box(3);
                     }
                     cont++;
@@ -63,15 +64,18 @@ public class Path {
                 }
                 panel.add(newBox);
                 Globals.matriz[i][j] = newBox;
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 if(newBox.getType() == 1){
-                    newBox.setIcon((new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg"))));
+                    newBox.setText("1");
+                    newBox.setIcon((new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png"))));
                 }
                 else if(newBox.getType() == 2){
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                    newBox.setText("2");
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 }
                 else if(newBox.getType() == 3){
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/tierra_Icono.jpg")));
+                    newBox.setText("3");
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 }
                 else if(newBox.getType() == 0){
                 newBox.setText("0");
@@ -79,7 +83,7 @@ public class Path {
             }
         }
         Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
-        Globals.matriz[Globals.amountRows - 1][Globals.amountColumns - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/adobe-image-ready-icono-4767-32.png")));
+        Globals.matriz[Globals.amountRows - 1][Globals.amountColumns - 1].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/hormiguero.jpg")));
         panel.paintAll(panel.getGraphics());
     }
 }

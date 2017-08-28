@@ -125,9 +125,7 @@ public class StartGameView extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(673, 499));
         setMinimumSize(new java.awt.Dimension(673, 499));
-        setPreferredSize(new java.awt.Dimension(673, 499));
         getContentPane().setLayout(null);
 
         principalPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -177,7 +175,7 @@ public class StartGameView extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Rows");
+        jLabel6.setText("Clods");
 
         clodsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "6" }));
 
@@ -216,7 +214,7 @@ public class StartGameView extends javax.swing.JFrame {
                     .addGroup(principalPanelLayout.createSequentialGroup()
                         .addGap(279, 279, 279)
                         .addComponent(startGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         principalPanelLayout.setVerticalGroup(
             principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,6 +258,7 @@ public class StartGameView extends javax.swing.JFrame {
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
         Globals.amountRows = Integer.parseInt((String)this.rowsComboBox.getSelectedItem());
         Globals.amountColumns = Integer.parseInt((String) this.columnsComboBox.getSelectedItem());
+        Globals.amountClods = (Integer.parseInt((String) this.clodsComboBox.getSelectedItem())) * 3;
         SaveToTxt();
         starGameWindow();
         this.setVisible(false);
@@ -307,7 +306,7 @@ public class StartGameView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField nickNameTextField;
-    private javax.swing.JPanel principalPanel;
+    public static javax.swing.JPanel principalPanel;
     private javax.swing.JComboBox<String> rowsComboBox;
     private javax.swing.JLabel showStarsLabel;
     private javax.swing.JSlider starsSlider;
