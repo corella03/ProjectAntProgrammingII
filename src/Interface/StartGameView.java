@@ -60,44 +60,6 @@ public class StartGameView extends javax.swing.JFrame {
             }
         }
     }
-    //Method to select stars icons
-    public void selectAnt() {
-        switch (starsSlider.getValue()) 
-        {
-            case 1:
-                String pathOneStar = "/Icons/oneStar.png";
-                URL urlOneStar = this.getClass().getResource(pathOneStar);
-                ImageIcon oneStarIcon = new ImageIcon(urlOneStar);
-                showStarsLabel.setIcon(oneStarIcon);
-                break;
-            case 2:
-                String pathTwo = "/Icons/twoStars.jpg";
-                URL twoUrl = this.getClass().getResource(pathTwo);
-                ImageIcon iconNumberTwo = new ImageIcon(twoUrl);
-                showStarsLabel.setIcon(iconNumberTwo);
-                break;
-            case 3:
-                String pathThreeStar = "/Icons/threeStars.jpg";
-                URL ThreeStar = this.getClass().getResource(pathThreeStar);
-                ImageIcon threeStarIcon = new ImageIcon(ThreeStar);
-                showStarsLabel.setIcon(threeStarIcon);
-                break;
-            case 4:
-                String pathFourtStar = "/Icons/fourtStars.jpg";
-                URL urlFourtStar = this.getClass().getResource(pathFourtStar);
-                ImageIcon fourtStarIcon = new ImageIcon(urlFourtStar);
-                showStarsLabel.setIcon(fourtStarIcon);
-                break;
-            case 5:
-                String pathFiveStar = "/Icons/fiveStars.jpg";
-                URL urlFiveStar = this.getClass().getResource(pathFiveStar);
-                ImageIcon fiveStarIcon = new ImageIcon(urlFiveStar);
-                showStarsLabel.setIcon(fiveStarIcon);
-                break;
-            default:
-                break;
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,8 +71,6 @@ public class StartGameView extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         principalPanel = new javax.swing.JPanel();
-        starsSlider = new javax.swing.JSlider();
-        showStarsLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         nickNameTextField = new javax.swing.JTextField();
         startGameButton = new javax.swing.JButton();
@@ -130,22 +90,6 @@ public class StartGameView extends javax.swing.JFrame {
 
         principalPanel.setBackground(new java.awt.Color(255, 255, 255));
         principalPanel.setOpaque(false);
-
-        starsSlider.setBackground(new java.awt.Color(0, 153, 153));
-        starsSlider.setForeground(new java.awt.Color(255, 255, 255));
-        starsSlider.setMajorTickSpacing(1);
-        starsSlider.setMaximum(5);
-        starsSlider.setMinimum(1);
-        starsSlider.setPaintLabels(true);
-        starsSlider.setPaintTicks(true);
-        starsSlider.setValue(1);
-        starsSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                starsSliderStateChanged(evt);
-            }
-        });
-
-        showStarsLabel.setBorder(new javax.swing.border.MatteBorder(null));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -169,24 +113,26 @@ public class StartGameView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Columns");
 
+        rowsComboBox.setBackground(new java.awt.Color(0, 153, 153));
         rowsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        rowsComboBox.setFocusable(false);
 
+        columnsComboBox.setBackground(new java.awt.Color(0, 153, 153));
         columnsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
+        columnsComboBox.setFocusable(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Clods");
 
+        clodsComboBox.setBackground(new java.awt.Color(0, 153, 153));
         clodsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "6" }));
+        clodsComboBox.setFocusable(false);
 
         javax.swing.GroupLayout principalPanelLayout = new javax.swing.GroupLayout(principalPanel);
         principalPanel.setLayout(principalPanelLayout);
         principalPanelLayout.setHorizontalGroup(
             principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, principalPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(starsSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(173, 173, 173))
             .addGroup(principalPanelLayout.createSequentialGroup()
                 .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(principalPanelLayout.createSequentialGroup()
@@ -195,22 +141,19 @@ public class StartGameView extends javax.swing.JFrame {
                             .addComponent(nickNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(61, 61, 61)
-                        .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(principalPanelLayout.createSequentialGroup()
-                                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(principalPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rowsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(principalPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(columnsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(66, 66, 66)
-                                .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(clodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(showStarsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rowsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(principalPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(columnsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(66, 66, 66)
+                        .addGroup(principalPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(clodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(principalPanelLayout.createSequentialGroup()
                         .addGap(279, 279, 279)
                         .addComponent(startGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -235,11 +178,7 @@ public class StartGameView extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(columnsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(clodsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(47, 47, 47)
-                .addComponent(showStarsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(starsSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(187, 187, 187)
                 .addComponent(startGameButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -253,8 +192,6 @@ public class StartGameView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void starsSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_starsSliderStateChanged
-    }//GEN-LAST:event_starsSliderStateChanged
     private void startGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startGameButtonActionPerformed
         Globals.amountRows = Integer.parseInt((String)this.rowsComboBox.getSelectedItem());
         Globals.amountColumns = Integer.parseInt((String) this.columnsComboBox.getSelectedItem());
@@ -308,8 +245,6 @@ public class StartGameView extends javax.swing.JFrame {
     private javax.swing.JTextField nickNameTextField;
     public static javax.swing.JPanel principalPanel;
     private javax.swing.JComboBox<String> rowsComboBox;
-    private javax.swing.JLabel showStarsLabel;
-    private javax.swing.JSlider starsSlider;
     private javax.swing.JButton startGameButton;
     // End of variables declaration//GEN-END:variables
 }

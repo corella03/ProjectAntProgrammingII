@@ -18,6 +18,6 @@ public class ProjectAntProgrammingII {
      */
     public static void main(String[] args) {
         StartGameView start = new StartGameView();
-        start.setVisible(true);
+        start.setVisible(true);   
     }   
 }

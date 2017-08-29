@@ -155,8 +155,16 @@ public class Ant implements IAntInterface{
                 default:
                     break;
             }
+            win();
         }else{
             errorSound();
+        }
+    }
+    public void win()
+    {
+        if(countRows == Globals.amountRows - 1 && countColumns == Globals.amountColumns - 1) 
+        {
+            JOptionPane.showMessageDialog(null, "Ganaste");
         }
     }
     //Method Hip
@@ -365,7 +373,7 @@ public class Ant implements IAntInterface{
         {
             this.status = 2;//Ebria
         }
-        else if(this.health == 0)
+        else if(this.alcoholLevel == 0)
         {
             this.status = 1;//Sobria
         }

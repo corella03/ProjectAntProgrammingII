@@ -30,8 +30,8 @@ public class GameView extends javax.swing.JFrame {
     }
     public void gameOver()
     {
-        StartGameView star = new StartGameView();
-        star.setVisible(true);
+        GameOverView go = new GameOverView();
+        go.setVisible(true);
         this.setVisible(false);
     }
     public void progressBar()
@@ -160,8 +160,7 @@ public class GameView extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
             switch (newAnt.changeStatus()) {
                 case 0:
-                    JOptionPane.showMessageDialog(null, "GAME OVER");
-                    this.gameOver();
+                    gameOver();
                     break;
                 case 1:
                     progressBar();
@@ -169,8 +168,8 @@ public class GameView extends javax.swing.JFrame {
                     break;
                 case 2:
                     progressBar();
-                    newAnt.walk(evt.getKeyCode());
-                    //newAnt.hip(evt.getKeyCode());
+                    //newAnt.walk(evt.getKeyCode());
+                    newAnt.hip(evt.getKeyCode());
                     break;
                 case 3:
                     progressBar();
