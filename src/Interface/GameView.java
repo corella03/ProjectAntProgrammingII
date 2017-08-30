@@ -8,12 +8,9 @@ import Logic.Ant;
 import Logic.Box;
 import Logic.Globals;
 import Logic.Path;
-<<<<<<< HEAD
 import java.awt.Component;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-=======
->>>>>>> f0e2002888d1d1f8c9c699547e4abe9f814a7823
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -57,7 +54,6 @@ public class GameView extends javax.swing.JFrame {
         {
             toxicProgressBar.setValue(100);
             ToxicLabel.setText("Toxic: 100%");
-<<<<<<< HEAD
         }
     }
     public void resizeImage(){
@@ -71,8 +67,6 @@ public class GameView extends javax.swing.JFrame {
             Image newImage = img.getScaledInstance(width,height, Image.SCALE_SMOOTH);
             ImageIcon image = new ImageIcon(newImage);
             label.setIcon(image);
-=======
->>>>>>> f0e2002888d1d1f8c9c699547e4abe9f814a7823
         }
     }
     /**
@@ -206,7 +200,6 @@ public class GameView extends javax.swing.JFrame {
                 default:
                     break;
             }
-        
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
