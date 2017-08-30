@@ -5,6 +5,7 @@
  */
 package Logic;
 import java.applet.AudioClip;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  **
@@ -15,12 +16,13 @@ import javax.swing.JOptionPane;
  **/
 public class Ant implements IAntInterface{
     private String nickName;
-    private int path;//talvez se necesiten 2 listas 1 para filas y otras para columnas
+    //talvez se necesiten 2 listas 1 para filas y otras para columnas
     private int health ;
     private int alcoholLevel;
     private int status;
     private boolean toxic = false;
-    //This variables used only in this class
+    private ArrayList<Integer> pathRows;
+    private ArrayList<Integer> pathColumns;
     private int countRows = 0;
     private int countColumns = 0;
     private int previous = 0;
@@ -34,10 +36,6 @@ public class Ant implements IAntInterface{
 
     public String getNickName() {
         return nickName;
-    }
-
-    public int getPath() {
-        return path;
     }
 
     public int getHealth() {
@@ -61,9 +59,7 @@ public class Ant implements IAntInterface{
         this.nickName = nickName;
     }
 
-    public void setPath(int path) {
-        this.path = path;
-    }
+    
 
     public void setHealth(int health) {
         this.health = health;
@@ -87,6 +83,19 @@ public class Ant implements IAntInterface{
         errorSound = java.applet.Applet.newAudioClip(getClass().getResource("/Icons/error.wav"));
         errorSound.play();
     }
+    public void saveInList(int row, int column)
+    {
+        pathRows.add(row);
+        pathColumns.add(column);
+    }
+    public void imprimir()
+    {
+        for (int i = 0; i < pathRows.size(); i++) {
+            for (int j = 0; j < pathColumns.size(); j++) {
+                System.out.println(pathRows.get(i) + "  " + pathColumns.get(i));
+            }
+        }
+    }
     //Method to move the Ant
 @Override
     public void walk(int code) {
@@ -100,12 +109,14 @@ public class Ant implements IAntInterface{
                     //Arriba
                     if (countRows > 0)
                     {
+                        
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-
                         countRows--;
+                        
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        
                     } else {
                         errorSound();
                     }
@@ -114,12 +125,14 @@ public class Ant implements IAntInterface{
                     //Izquierda
                     if (countColumns > 0) 
                     {
+                        
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-
                         countColumns--;
+                        
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        
                     }else {
                         errorSound();
                     }
@@ -128,12 +141,14 @@ public class Ant implements IAntInterface{
                     //Derecha
                     if (countColumns < Globals.amountColumns - 1) 
                     {
+                        
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-
                         countColumns++;
+                        
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        
                     } else {
                         errorSound();
                     }
@@ -142,12 +157,14 @@ public class Ant implements IAntInterface{
                     //Abajo
                     if (countRows < Globals.amountRows - 1) 
                     {
+                        
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-
                         countRows++;
+                        
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        
                     }else {
                         errorSound();
                     }
@@ -158,6 +175,16 @@ public class Ant implements IAntInterface{
             win();
         }else{
             errorSound();
+        }
+    }
+    public void limit()
+    {
+        if (countRows > 0 || countColumns > 0 || countColumns < Globals.amountColumns - 1 || countRows < Globals.amountRows - 1)
+        {
+            if(changeStatus() == 3)
+            {
+                this.setHealth(this.health - 20);
+            }
         }
     }
     public void win()
@@ -193,6 +220,7 @@ public class Ant implements IAntInterface{
        {
            case 0:
                methodToEat(clod);
+               
                break;
            case 1:
                methodToEat(clod);
@@ -221,6 +249,7 @@ public class Ant implements IAntInterface{
         switch (clod) {
             case 0:
                 modifyHealth(clod);
+                changeAlcoholLevel(clod);
                 break;
             case 1:
                 modifyHealth(clod);
@@ -232,6 +261,7 @@ public class Ant implements IAntInterface{
                 break;
             case 3:
                 modifyHealth(clod);
+                changeAlcoholLevel(clod);
                 break;
             default:
                 break;

@@ -8,7 +8,7 @@ package Interface;
  **
  ** @author Luis Alonso Corella Chaves
  ** @author Ana Elena Ulate Salas
- ** @date 2017-08-01 * 
+ ** @date 2017-08-29 * 
  **
  **/
 public class GameOverView extends javax.swing.JFrame {
@@ -39,19 +39,21 @@ public class GameOverView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1028, 550));
         setMinimumSize(new java.awt.Dimension(1028, 550));
         getContentPane().setLayout(null);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Back to Menu");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, -1, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 400, 130, 40));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/gameOver.gif"))); // NOI18N

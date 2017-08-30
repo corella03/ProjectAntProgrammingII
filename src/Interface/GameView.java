@@ -7,7 +7,6 @@ package Interface;
 import Logic.Ant;
 import Logic.Box;
 import Logic.Path;
-import javax.swing.JOptionPane;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -36,15 +35,19 @@ public class GameView extends javax.swing.JFrame {
     }
     public void progressBar()
     {
+        healthLabel.setText("Health: " + this.newAnt.getHealth() +"%");
+        alcoholLabel.setText("Alcohol: " + this.newAnt.getAlcoholLevel() +"%");
         healthProgressBar.setValue(newAnt.getHealth());
         AlcoholProgressBar.setValue(newAnt.getAlcoholLevel());
         if(newAnt.changeStatus() != 3)
         {
             toxicProgressBar.setValue(0);
+            ToxicLabel.setText("Toxic: 0%");
         }
         if(newAnt.getStatus() == 3)
         {
             toxicProgressBar.setValue(100);
+            ToxicLabel.setText("Toxic: 100%");
         }
     }
     /**
@@ -61,9 +64,9 @@ public class GameView extends javax.swing.JFrame {
         healthProgressBar = new javax.swing.JProgressBar();
         AlcoholProgressBar = new javax.swing.JProgressBar();
         toxicProgressBar = new javax.swing.JProgressBar();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        alcoholLabel = new javax.swing.JLabel();
+        healthLabel = new javax.swing.JLabel();
+        ToxicLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,14 +109,14 @@ public class GameView extends javax.swing.JFrame {
 
         toxicProgressBar.setForeground(new java.awt.Color(153, 0, 153));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Health:");
+        alcoholLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        alcoholLabel.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Alcohol");
+        healthLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        healthLabel.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Toxic");
+        ToxicLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ToxicLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -121,31 +124,31 @@ public class GameView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(toxicProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AlcoholProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(healthProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(toxicProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AlcoholProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(healthProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(healthLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(alcoholLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ToxicLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(37, 37, 37)
+                .addComponent(healthLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(healthProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(alcoholLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addComponent(AlcoholProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addGap(11, 11, 11)
+                .addComponent(ToxicLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(toxicProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -169,10 +172,12 @@ public class GameView extends javax.swing.JFrame {
                 case 2:
                     progressBar();
                     //newAnt.walk(evt.getKeyCode());
+                    this.newAnt.limit();
                     newAnt.hip(evt.getKeyCode());
                     break;
                 case 3:
                     progressBar();
+                    this.newAnt.limit();
                     newAnt.walk(evt.getKeyCode());
                     break;
                 default:
@@ -219,12 +224,12 @@ public class GameView extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar AlcoholProgressBar;
+    private javax.swing.JLabel ToxicLabel;
+    private javax.swing.JLabel alcoholLabel;
     private javax.swing.JPanel gamePanel;
+    private javax.swing.JLabel healthLabel;
     private javax.swing.JProgressBar healthProgressBar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar toxicProgressBar;
     // End of variables declaration//GEN-END:variables
