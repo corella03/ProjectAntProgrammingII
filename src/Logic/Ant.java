@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package Logic;
+import Interface.StartGameView;
+import static Interface.StartGameView.starGameWindow;
 import java.applet.AudioClip;
 import java.util.ArrayList;
+import Interface.VictoryView;
 import javax.swing.JOptionPane;
 /**
  **
@@ -53,8 +56,16 @@ public class Ant implements IAntInterface{
     public boolean isToxic() {
         return toxic;
     }
-    
 
+    public int getCountRows() {
+        return countRows;
+    }
+
+    public int getCountColumns() {
+        return countColumns;
+    }
+    
+    
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
@@ -76,6 +87,15 @@ public class Ant implements IAntInterface{
     public void setToxic(boolean toxic) {
         this.toxic = toxic;
     }
+
+    public void setCountRows(int countRows) {
+        this.countRows = countRows;
+    }
+
+    public void setCountColumns(int countColumns) {
+        this.countColumns = countColumns;
+    }
+    
     
     public void errorSound() 
     {
@@ -177,6 +197,14 @@ public class Ant implements IAntInterface{
             errorSound();
         }
     }
+    public void win()
+    {
+        if(this.countRows == Globals.amountRows - 1 && this.countColumns == Globals.amountColumns - 1) 
+        {
+            VictoryView vc = new VictoryView();
+            vc.setVisible(true);
+        }
+    }
     public void limit()
     {
         if (countRows > 0 || countColumns > 0 || countColumns < Globals.amountColumns - 1 || countRows < Globals.amountRows - 1)
@@ -185,13 +213,6 @@ public class Ant implements IAntInterface{
             {
                 this.setHealth(this.health - 20);
             }
-        }
-    }
-    public void win()
-    {
-        if(countRows == Globals.amountRows - 1 && countColumns == Globals.amountColumns - 1) 
-        {
-            JOptionPane.showMessageDialog(null, "Ganaste");
         }
     }
     //Method Hip

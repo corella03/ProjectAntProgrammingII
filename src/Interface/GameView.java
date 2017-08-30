@@ -6,6 +6,7 @@
 package Interface;
 import Logic.Ant;
 import Logic.Box;
+import Logic.Globals;
 import Logic.Path;
 /**
  **
@@ -161,7 +162,7 @@ public class GameView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-            switch (newAnt.changeStatus()) {
+       switch (newAnt.changeStatus()) {
                 case 0:
                     gameOver();
                     break;
@@ -172,17 +173,16 @@ public class GameView extends javax.swing.JFrame {
                 case 2:
                     progressBar();
                     //newAnt.walk(evt.getKeyCode());
-                    this.newAnt.limit();
                     newAnt.hip(evt.getKeyCode());
                     break;
                 case 3:
                     progressBar();
-                    this.newAnt.limit();
                     newAnt.walk(evt.getKeyCode());
                     break;
                 default:
                     break;
             }
+        
     }//GEN-LAST:event_formKeyPressed
     /**
      * @param args the command line arguments
