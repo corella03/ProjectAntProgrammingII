@@ -65,19 +65,19 @@ public class Path {
                 panel.add(newBox);
                 Globals.matriz[i][j] = newBox;
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-                if(newBox.getType() == 1){
+                if(newBox.getType() == 1 && Globals.matriz[i][j] != Globals.matriz[0][0] && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
                     newBox.setText("1");
                     newBox.setIcon((new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png"))));
                 }
-                else if(newBox.getType() == 2){
+                else if(newBox.getType() == 2 && Globals.matriz[i][j] != Globals.matriz[0][0] && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
                     newBox.setText("2");
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 }
-                else if(newBox.getType() == 3){
+                else if(newBox.getType() == 3 && Globals.matriz[i][j] != Globals.matriz[0][0] && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
                     newBox.setText("3");
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 }
-                else if(newBox.getType() == 0){
+                else{
                 newBox.setText("0");
                 }
             }

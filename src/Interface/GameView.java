@@ -6,7 +6,14 @@
 package Interface;
 import Logic.Ant;
 import Logic.Box;
+import Logic.Globals;
 import Logic.Path;
+<<<<<<< HEAD
+import java.awt.Component;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+=======
+>>>>>>> f0e2002888d1d1f8c9c699547e4abe9f814a7823
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -21,10 +28,12 @@ public class GameView extends javax.swing.JFrame {
     Box newBox = null;
     Ant newAnt = new Ant("Hormigon",100,0,1);
     Path path = new Path();
+    
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
         path.starGame(this.gamePanel);
+        resizeImage();
         progressBar();
     }
     public void gameOver()
@@ -48,6 +57,22 @@ public class GameView extends javax.swing.JFrame {
         {
             toxicProgressBar.setValue(100);
             ToxicLabel.setText("Toxic: 100%");
+<<<<<<< HEAD
+        }
+    }
+    public void resizeImage(){
+        Component[] components = gamePanel.getComponents();
+        for(Component c : components){
+            Box label = (Box) c;
+            int height = (int) gamePanel.getSize().getHeight() / Globals.amountColumns;
+            int width = (int) gamePanel.getSize().getWidth() / Globals.amountRows; 
+            ImageIcon myImage = (ImageIcon) label.getIcon();
+            Image img = myImage.getImage();
+            Image newImage = img.getScaledInstance(width,height, Image.SCALE_SMOOTH);
+            ImageIcon image = new ImageIcon(newImage);
+            label.setIcon(image);
+=======
+>>>>>>> f0e2002888d1d1f8c9c699547e4abe9f814a7823
         }
     }
     /**
@@ -152,7 +177,7 @@ public class GameView extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(1020, 110, 270, 450);
+        jPanel1.setBounds(1020, 110, 270, 454);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
