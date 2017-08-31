@@ -14,6 +14,7 @@ import javax.swing.JLabel;
  **/
 public class Box extends JLabel{
     private int type;
+    private boolean walkedBox = false;
     public Box(int type) 
     {
         super();
@@ -23,8 +24,18 @@ public class Box extends JLabel{
     {
         return type;
     }
+
+    public boolean isWalkedBox() {
+        return walkedBox;
+    }
+    
     public void setType(int type) 
     {
         this.type = type;
     }
+
+    public void setWalkedBox(boolean walkedBox) {
+        this.walkedBox = walkedBox;
+    }
+    
 }
