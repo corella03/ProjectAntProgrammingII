@@ -130,12 +130,14 @@ public class Ant implements IAntInterface{
                     if (countRows > 0)
                     {
                         
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countRows--;
                         
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                         
                     } else {
                         errorSound();
@@ -146,12 +148,14 @@ public class Ant implements IAntInterface{
                     if (countColumns > 0) 
                     {
                         
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countColumns--;
                         
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                         
                     }else {
                         errorSound();
@@ -162,12 +166,14 @@ public class Ant implements IAntInterface{
                     if (countColumns < Globals.amountColumns - 1) 
                     {
                         
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countColumns++;
                         
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                         
                     } else {
                         errorSound();
@@ -178,12 +184,14 @@ public class Ant implements IAntInterface{
                     if (countRows < Globals.amountRows - 1) 
                     {
                         
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countRows++;
                         
                         this.eatClod(Globals.matriz[countRows][countColumns].getType());
                         Globals.matriz[countRows][countColumns].setType(0);
-                        Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
+                        Globals.matriz[countRows][countColumns].setIcon
+        (new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                         
                     }else {
                         errorSound();

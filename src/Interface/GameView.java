@@ -11,6 +11,7 @@ import Logic.Path;
 import java.awt.Component;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -25,7 +26,7 @@ public class GameView extends javax.swing.JFrame {
     Box newBox = null;
     Ant newAnt = new Ant("Hormigon",100,0,1);
     Path path = new Path();
-    
+    int cont = 0;
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -56,12 +57,15 @@ public class GameView extends javax.swing.JFrame {
             ToxicLabel.setText("Toxic: 100%");
         }
     }
+    /**
+     * Method to assing image to a Box at its full size
+     */
     public void resizeImage(){
         Component[] components = gamePanel.getComponents();
         for(Component c : components){
             Box label = (Box) c;
             int height = (int) gamePanel.getSize().getHeight() / Globals.amountColumns;
-            int width = (int) gamePanel.getSize().getWidth() / Globals.amountRows; 
+            int width = (int) gamePanel.getSize().getWidth() / Globals.amountRows;
             ImageIcon myImage = (ImageIcon) label.getIcon();
             Image img = myImage.getImage();
             Image newImage = img.getScaledInstance(width,height, Image.SCALE_SMOOTH);
@@ -183,19 +187,26 @@ public class GameView extends javax.swing.JFrame {
        switch (newAnt.changeStatus()) {
                 case 0:
                     gameOver();
+                    JOptionPane.showMessageDialog(this, "Steps: " + cont ,"Total Steps", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 case 1:
                     progressBar();
                     newAnt.walk(evt.getKeyCode());
+                    cont ++;
+                    resizeImage();
                     break;
                 case 2:
                     progressBar();
                     //newAnt.walk(evt.getKeyCode());
                     newAnt.hip(evt.getKeyCode());
+                    cont++;
+                    resizeImage();
                     break;
                 case 3:
                     progressBar();
                     newAnt.walk(evt.getKeyCode());
+                    cont++;
+                    resizeImage();
                     break;
                 default:
                     break;

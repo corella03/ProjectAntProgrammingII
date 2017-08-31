@@ -18,9 +18,17 @@ public class Path {
     int column;
     int row;
     Box newBox = null;
+    
     //GameView game = new GameView();
     public Path() {
     }
+    /**
+     * Method to produce Random positions 
+     * @param amount
+     * @param limitX
+     * @param limitY
+     * @return 
+     */
     public ArrayList<ArrayList<Integer>> getRandomPositions(int amount, int limitX,int limitY){
         ArrayList<ArrayList<Integer>> clodList = new  ArrayList<>();
         while(clodList.size() < amount){
@@ -35,12 +43,16 @@ public class Path {
         }
         return clodList;
     }
-    //Method for start game
+    /**
+     * Method to start game, generated boxes and Update boxes
+     */  
     public void starGame(JPanel panel) {
         Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
         panel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
-        ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions(Globals.amountClods,Globals.amountRows,Globals.amountColumns);      
+        ArrayList<ArrayList<Integer>> randomPositionList = getRandomPositions
+        (Globals.amountClods,Globals.amountRows,Globals.amountColumns);      
         int cont = 0;
+        //Randomly chooses what is going to be in each of the Path boxes
         for (int i = 0; i < Globals.amountRows; i++) {
             for (int j = 0; j < Globals.amountColumns; j++) {
                 ArrayList<Integer> listOfIndex =  new ArrayList<>();
@@ -62,18 +74,22 @@ public class Path {
                 else{
                     newBox = new Box(0);
                 }
+                //Add box to panel and set its image
                 panel.add(newBox);
                 Globals.matriz[i][j] = newBox;
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
-                if(newBox.getType() == 1 && Globals.matriz[i][j] != Globals.matriz[0][0] && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
+                if(newBox.getType() == 1 && Globals.matriz[i][j] != Globals.matriz[0][0] 
+                        && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
                     newBox.setText("1");
                     newBox.setIcon((new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png"))));
                 }
-                else if(newBox.getType() == 2 && Globals.matriz[i][j] != Globals.matriz[0][0] && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
+                else if(newBox.getType() == 2 && Globals.matriz[i][j] != Globals.matriz[0][0] 
+                        && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
                     newBox.setText("2");
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 }
-                else if(newBox.getType() == 3 && Globals.matriz[i][j] != Globals.matriz[0][0] && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
+                else if(newBox.getType() == 3 && Globals.matriz[i][j] != Globals.matriz[0][0] 
+                        && Globals.matriz[i][j] != Globals.matriz[Globals.amountRows -1][Globals.amountColumns -1]){
                     newBox.setText("3");
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 }
