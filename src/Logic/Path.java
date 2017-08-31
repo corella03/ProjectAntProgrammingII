@@ -18,8 +18,6 @@ public class Path {
     int column;
     int row;
     Box newBox = null;
-    
-    //GameView game = new GameView();
     public Path() {
     }
     /**

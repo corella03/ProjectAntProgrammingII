@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package Logic;
-import Interface.StartGameView;
-import static Interface.StartGameView.starGameWindow;
 import java.applet.AudioClip;
 import java.util.ArrayList;
 import Interface.VictoryView;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -29,6 +27,7 @@ public class Ant implements IAntInterface{
     private int countColumns = 0;
     private int previous = 0;
     int count = 0;
+    Box newBox = null;
     public Ant(String nickName, int health, int alcoholLevel, int status) {
         this.nickName = nickName;
         this.health = health;
@@ -400,6 +399,20 @@ public class Ant implements IAntInterface{
             default:
                 break;
         }
+    }
+    public void showPath(JPanel panel)
+    {
+        Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
+        panel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
+        for (int i = 0; i < Globals.amountRows; i++) {
+            for (int j = 0; j < Globals.amountColumns; j++) {
+                newBox = new Box(0);
+                panel.add(newBox);
+                Globals.matriz[i][j] = newBox;
+                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+            }    
+        }  
+        panel.paintAll(panel.getGraphics());
     }
     @Override
     public int changeStatus() {

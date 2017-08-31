@@ -40,6 +40,12 @@ public class GameView extends javax.swing.JFrame {
         go.setVisible(true);
         this.setVisible(false);
     }
+    public void pathAnt()
+    {   
+        GameView view = new GameView();
+        view.setVisible(true);
+        this.newAnt.showPath(this.gamePanel);
+    }
     public void progressBar()
     {
         healthLabel.setText("Health: " + this.newAnt.getHealth() +"%");

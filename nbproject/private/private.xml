@@ -5,19 +5,17 @@
             <url>src/Logic/Ant.java</url>
             <bookmark id="1">
                 <name/>
-                <line>244</line>
+                <line>221</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Interface/GameView.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Logic/Ant.java</file>
+            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Interface/GameView.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Interface/GameOverView.java</file>
             <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Logic/Path.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Interface/StartGameView.java</file>
-            <file>file:/C:/Users/luisalonso/Documents/Proyectos%20UTN/ProjectAntProgrammingII/src/Logic/Box.java</file>
         </group>
     </open-files>
 </project-private>
