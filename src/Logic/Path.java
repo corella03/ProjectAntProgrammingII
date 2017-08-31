@@ -15,10 +15,28 @@ import javax.swing.JPanel;
  ** 
  **/
 public class Path {
-    int column;
-    int row;
+    private int column;
+    private int row;
     Box newBox = null;
     public Path() {
+    }
+    //Getters
+    public int getColumn() 
+    {
+        return column;
+    }
+    public int getRow() 
+    {
+        return row;
+    }
+    //Setters
+    public void setColumn(int column) 
+    {
+        this.column = column;
+    }
+    public void setRow(int row) 
+    {
+        this.row = row;
     }
     /**
      * Method to produce Random positions 
@@ -72,8 +90,7 @@ public class Path {
                 else{
                     newBox = new Box(0);
                 }
-                //Add box to panel and set its image
-                panel.add(newBox);
+                panel.add(newBox); //Add box to panel and set its image
                 Globals.matriz[i][j] = newBox;
                 newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                 if(newBox.getType() == 1 && Globals.matriz[i][j] != Globals.matriz[0][0] 

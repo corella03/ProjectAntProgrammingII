@@ -20,22 +20,22 @@ public class Box extends JLabel{
         super();
         this.type = type;
     }
+    //Getters
     public int getType() 
     {
         return type;
     }
-
-    public boolean isWalkedBox() {
+    public boolean isWalkedBox() 
+    {
         return walkedBox;
     }
-    
+    //Setters
     public void setType(int type) 
     {
         this.type = type;
     }
-
-    public void setWalkedBox(boolean walkedBox) {
+    public void setWalkedBox(boolean walkedBox) 
+    {
         this.walkedBox = walkedBox;
     }
-    
 }

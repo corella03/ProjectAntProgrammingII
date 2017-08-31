@@ -24,7 +24,7 @@ public class Ant implements IAntInterface{
     private int countRows = 0;
     private int countColumns = 0;
     private int previous = 0;
-    int count = 0;
+    private int count = 0;
     Box newBox = null;
     public Ant(String nickName, int health, int alcoholLevel, int status) {
         this.nickName = nickName;
@@ -32,67 +32,75 @@ public class Ant implements IAntInterface{
         this.alcoholLevel = alcoholLevel;
         this.status = status;
     }
-
-    public String getNickName() {
+    //Getters
+    public String getNickName() 
+    {
         return nickName;
     }
-
-    public int getHealth() {
+    public int getHealth() 
+    {
         return health;
     }
-
-    public int getAlcoholLevel() {
+    public int getAlcoholLevel() 
+    {
         return alcoholLevel;
     }
-
     public int getStatus() {
         return status;
     }
-
-    public boolean isToxic() {
+    public boolean isToxic() 
+    {
         return toxic;
     }
-
-    public int getCountRows() {
-        return countRows;
-    }
-
-    public int getCountColumns() {
+    public int getCountColumns() 
+    {
         return countColumns;
     }
-    
-    
-    public void setNickName(String nickName) {
+    public int getPrevious() 
+    {
+        return previous;
+    }
+    public int getCount()
+    {
+        return count;
+    }
+    //Setters
+    public void setNickName(String nickName) 
+    {
         this.nickName = nickName;
     }
-
-    
-
-    public void setHealth(int health) {
+    public void setHealth(int health) 
+    {
         this.health = health;
     }
-
-    public void setAlcoholLevel(int alcoholLevel) {
+    public void setAlcoholLevel(int alcoholLevel) 
+    {
         this.alcoholLevel = alcoholLevel;
     }
-
-    public void setStatus(int status) {
+    public void setStatus(int status)
+    {
         this.status = status;
     }
-
-    public void setToxic(boolean toxic) {
+    public void setToxic(boolean toxic)
+    {
         this.toxic = toxic;
     }
-
-    public void setCountRows(int countRows) {
+    public void setCountRows(int countRows) 
+    {
         this.countRows = countRows;
     }
-
-    public void setCountColumns(int countColumns) {
+    public void setCountColumns(int countColumns)
+    {
         this.countColumns = countColumns;
     }
-    
-    
+    public void setPrevious(int previous) 
+    {
+        this.previous = previous;
+    }
+    public void setCount(int count)
+    {
+        this.count = count;
+    }
     public void errorSound() 
     {
         AudioClip errorSound;
@@ -223,7 +231,7 @@ public class Ant implements IAntInterface{
             }
         }
     }
-    //Method Hip
+    //Method Hip this ant move random
     @Override
     public void hip(int code) {
         int randomMove = (int) Math.floor(Math.random()*(37-41)+41);
@@ -296,7 +304,7 @@ public class Ant implements IAntInterface{
                 break;
         }
     }
-    //MEthod to modify Health
+    //Method to modify Health
     @Override
     public void modifyHealth(int type) {
         switch (this.changeStatus()) {
@@ -437,6 +445,7 @@ public class Ant implements IAntInterface{
         }  
         panel.paintAll(panel.getGraphics());
     }
+    //Method for change status of the ant
     @Override
     public int changeStatus() {
         if(this.health <= 0)

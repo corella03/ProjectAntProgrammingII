@@ -19,7 +19,7 @@ import java.io.IOException;
  ** 
  **/
 public class FileManager {
-
+    //Method 
     public String readTextFile(String fileName) {
         String text = "";
         FileReader file = null;
@@ -44,7 +44,6 @@ public class FileManager {
         }
         return text;
     }
-
     public void writeTextFile(String fileName, String text) {
         FileWriter output = null;
         try {
@@ -62,5 +61,4 @@ public class FileManager {
             }
         }
     }
-
 }
