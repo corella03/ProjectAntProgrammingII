@@ -16,7 +16,7 @@ public class Globals {
     public static int amountColumns;
     public static int amountClods;
     public static Box[][] matriz;
-    
+    public static int cont = 1;
     //Getters
     public static int getAmountRows()
     {
@@ -31,9 +31,9 @@ public class Globals {
         return amountClods;
     }
 
-    
-    
-    
+    public static int getCont() {
+        return cont;
+    }
     
     //Setters
     public static void setAmountRows(int amountRows) 
@@ -49,4 +49,8 @@ public class Globals {
         Globals.amountClods = amountClods;
     }
 
+    public static void setCont(int cont) {
+        Globals.cont = cont;
+    }
+    
 }

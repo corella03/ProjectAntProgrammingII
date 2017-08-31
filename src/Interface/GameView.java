@@ -26,7 +26,6 @@ public class GameView extends javax.swing.JFrame {
     Box newBox = null;
     Ant newAnt = new Ant("Hormigon",100,0,1);
     Path path = new Path();
-    int cont = 0;
     public GameView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -189,24 +188,23 @@ public class GameView extends javax.swing.JFrame {
        switch (newAnt.changeStatus()) {
                 case 0:
                     gameOver();
-                    JOptionPane.showMessageDialog(this, "Steps: " + cont ,"Total Steps", JOptionPane.INFORMATION_MESSAGE);
                     break;
                 case 1:
                     progressBar();
                     newAnt.walk(evt.getKeyCode(), this);
-                    cont ++;
+                    Globals.cont ++;
                     resizeImage();
                     break;
                 case 2:
                     progressBar();
                     newAnt.hip(evt.getKeyCode());
-                    cont++;
+                    Globals.cont++;
                     resizeImage();
                     break;
                 case 3:
                     progressBar();
                     newAnt.walk(evt.getKeyCode(),this);
-                    cont++;
+                    Globals.cont++;
                     resizeImage();
                     break;
                 default:

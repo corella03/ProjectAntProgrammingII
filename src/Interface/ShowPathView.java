@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package Interface;
-
 import Logic.Ant;
-
 /**
- *
- * @author luisalonso
- */
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Ana Elena Ulate Salas
+ ** @date 2017-08-29 * 
+ **
+ **/
 public class ShowPathView extends javax.swing.JFrame {
     Ant newAnt = new Ant("Hormigon",100,0,1);
     /**
@@ -18,10 +19,9 @@ public class ShowPathView extends javax.swing.JFrame {
      */
     public ShowPathView() {
         initComponents();
-        this.newAnt.showPath(this.pathPanel);
-        
+        this.setLocationRelativeTo(null);
+        this.newAnt.showPath(this.pathPanel);       
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,13 +32,17 @@ public class ShowPathView extends javax.swing.JFrame {
     private void initComponents() {
 
         pathPanel = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(850, 560));
+        setMinimumSize(new java.awt.Dimension(850, 560));
 
         pathPanel.setBackground(new java.awt.Color(255, 255, 255));
-        pathPanel.setMaximumSize(new java.awt.Dimension(850, 430));
-        pathPanel.setMinimumSize(new java.awt.Dimension(850, 430));
-        pathPanel.setName(""); // NOI18N
+        pathPanel.setMaximumSize(new java.awt.Dimension(850, 560));
+        pathPanel.setMinimumSize(new java.awt.Dimension(850, 560));
 
         javax.swing.GroupLayout pathPanelLayout = new javax.swing.GroupLayout(pathPanel);
         pathPanel.setLayout(pathPanelLayout);
@@ -48,27 +52,54 @@ public class ShowPathView extends javax.swing.JFrame {
         );
         pathPanelLayout.setVerticalGroup(
             pathPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 562, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setBorder(null);
+
+        jMenu1.setText("Options");
+
+        jMenuItem1.setText("Back to Menu");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pathPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pathPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pathPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
+            .addComponent(pathPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+        
+    }//GEN-LAST:event_jMenuItem1MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        GameOverView over = new GameOverView();
+        over.returnMenu();
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -95,7 +126,6 @@ public class ShowPathView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ShowPathView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -103,8 +133,10 @@ public class ShowPathView extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel pathPanel;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Interface;
+
+import Logic.Globals;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -18,6 +21,7 @@ public class GameOverView extends javax.swing.JFrame {
     public GameOverView() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.pathLabel.setText("Total Steps: " + Globals.cont);
     }
     public void returnMenu()
     {
@@ -42,6 +46,7 @@ public class GameOverView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         showPathButton = new javax.swing.JButton();
+        pathLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,12 +79,17 @@ public class GameOverView extends javax.swing.JFrame {
         jPanel2.add(showPathButton);
         showPathButton.setBounds(580, 400, 130, 40);
 
+        pathLabel.setBackground(new java.awt.Color(0, 153, 153));
+        pathLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel2.add(pathLabel);
+        pathLabel.setBounds(470, 40, 160, 30);
+
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/gameOver.gif"))); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(1021, 550));
         jLabel2.setMinimumSize(new java.awt.Dimension(1021, 550));
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(0, 0, 1024, 530);
+        jLabel2.setBounds(0, 0, 1024, 550);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 1030, 550);
@@ -133,6 +143,7 @@ public class GameOverView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel pathLabel;
     private javax.swing.JButton showPathButton;
     // End of variables declaration//GEN-END:variables
 }

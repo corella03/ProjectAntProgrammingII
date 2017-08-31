@@ -5,17 +5,22 @@
  */
 package Interface;
 
-/**
- *
- * @author luisalonso
- */
-public class VictoryView extends javax.swing.JFrame {
+import Logic.Globals;
 
+/**
+ **
+ ** @author Luis Alonso Corella Chaves
+ ** @author Ana Elena Ulate Salas
+ ** @date 2017-08-30 
+ **
+ **/
+public class VictoryView extends javax.swing.JFrame {
     /**
      * Creates new form VictoryView
      */
     public VictoryView() {
         initComponents();
+        this.pathLabel.setText("Total Steps: " + Globals.cont);
         this.setLocationRelativeTo(null);
     }
     /**
@@ -29,7 +34,7 @@ public class VictoryView extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        pathLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -44,12 +49,15 @@ public class VictoryView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Victory");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(260, 80, 180, 50);
+        jLabel2.setBounds(270, 140, 180, 50);
 
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(50, 110, 80, 40);
+        pathLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pathLabel.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(pathLabel);
+        pathLabel.setBounds(50, 60, 170, 40);
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 153));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Victory");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,16 +65,18 @@ public class VictoryView extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(160, 370, 65, 23);
+        jButton1.setBounds(160, 370, 120, 30);
 
-        jButton2.setText("jButton2");
+        jButton2.setBackground(new java.awt.Color(0, 153, 153));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Show Path");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(390, 370, 73, 23);
+        jButton2.setBounds(390, 370, 120, 30);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/victory.jpg"))); // NOI18N
         jPanel1.add(jLabel3);
@@ -88,7 +98,6 @@ public class VictoryView extends javax.swing.JFrame {
         over.showPathAnt();
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -115,7 +124,6 @@ public class VictoryView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(VictoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -123,13 +131,12 @@ public class VictoryView extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel pathLabel;
     // End of variables declaration//GEN-END:variables
 }
