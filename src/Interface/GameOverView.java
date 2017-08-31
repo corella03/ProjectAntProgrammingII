@@ -25,6 +25,7 @@ public class GameOverView extends javax.swing.JFrame {
         star.setVisible(true);
         this.setVisible(false);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,13 +37,14 @@ public class GameOverView extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        showPathButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1028, 550));
         getContentPane().setLayout(null);
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(null);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -53,13 +55,27 @@ public class GameOverView extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 400, 130, 40));
+        jPanel2.add(jButton1);
+        jButton1.setBounds(360, 400, 130, 40);
+
+        showPathButton.setBackground(new java.awt.Color(0, 153, 153));
+        showPathButton.setForeground(new java.awt.Color(255, 255, 255));
+        showPathButton.setText("Show Path");
+        showPathButton.setFocusable(false);
+        showPathButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showPathButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(showPathButton);
+        showPathButton.setBounds(580, 400, 130, 40);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/gameOver.gif"))); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(1021, 550));
         jLabel2.setMinimumSize(new java.awt.Dimension(1021, 550));
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 550));
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(0, 0, 1024, 530);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 1030, 550);
@@ -70,6 +86,10 @@ public class GameOverView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         returnMenu();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void showPathButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPathButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showPathButtonActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -108,5 +128,6 @@ public class GameOverView extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton showPathButton;
     // End of variables declaration//GEN-END:variables
 }

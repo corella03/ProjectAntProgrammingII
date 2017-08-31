@@ -40,30 +40,45 @@ public class VictoryView extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(720, 480));
         getContentPane().setLayout(null);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Victory");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 180, 50));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(260, 80, 180, 50);
 
         jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 80, 40));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(50, 110, 80, 40);
 
-        jButton1.setText("jButton1");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, -1, -1));
+        jButton1.setText("Victory");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(160, 370, 65, 23);
 
         jButton2.setText("jButton2");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, -1, -1));
+        jPanel1.add(jButton2);
+        jButton2.setBounds(390, 370, 73, 23);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/victory.jpg"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(0, 0, 720, 480);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 720, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        GameOverView over = new GameOverView();
+        over.returnMenu();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
