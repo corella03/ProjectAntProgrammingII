@@ -7,6 +7,7 @@ package Logic;
 import java.applet.AudioClip;
 import java.util.ArrayList;
 import Interface.VictoryView;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
  **
@@ -21,8 +22,6 @@ public class Ant implements IAntInterface{
     private int alcoholLevel;
     private int status;
     private boolean toxic = false;
-    private ArrayList<Integer> pathRows;
-    private ArrayList<Integer> pathColumns;
     private int countRows = 0;
     private int countColumns = 0;
     private int previous = 0;
@@ -101,23 +100,21 @@ public class Ant implements IAntInterface{
         errorSound = java.applet.Applet.newAudioClip(getClass().getResource("/Icons/error.wav"));
         errorSound.play();
     }
-    public void saveInList(int row, int column)
+    public void crash(int code)
     {
-        pathRows.add(row);
-        pathColumns.add(column);
-    }
-    public void imprimir()
-    {
-        for (int i = 0; i < pathRows.size(); i++) {
-            for (int j = 0; j < pathColumns.size(); j++) {
-                System.out.println(pathRows.get(i) + "  " + pathColumns.get(i));
-            }
+        if(changeStatus() == 2)
+        {
+            hip(code);
+        }
+        else if(this.toxic == true)
+        {
+            this.setHealth(this.health - 20);
+            hip(code);
         }
     }
     //Method to move the Ant
 @Override
-    public void walk(int code) {
-        
+    public void walk(int code,JFrame frame) {
         if(previous  != getBack(code))
         {
             previous = code;
@@ -129,12 +126,16 @@ public class Ant implements IAntInterface{
                     {
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countRows--;
-                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                        Globals.matriz[countRows][countColumns].setType(0);
+                        if(!(changeStatus() == 1 && Globals.matriz[countRows][countColumns].getType() == 3))
+                        {
+                            this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                            Globals.matriz[countRows][countColumns].setType(0); 
+                        }
                         Globals.matriz[countRows][countColumns].setWalkedBox(true);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                     } else {
                         errorSound();
+                        crash(code);
                     }
                     break;
                 case 37:
@@ -143,13 +144,17 @@ public class Ant implements IAntInterface{
                     {
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countColumns--;
-                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                        Globals.matriz[countRows][countColumns].setType(0);
+                        if(!(changeStatus() == 1 && Globals.matriz[countRows][countColumns].getType() == 3))
+                        {
+                            this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                            Globals.matriz[countRows][countColumns].setType(0); 
+                        }
                         Globals.matriz[countRows][countColumns].setWalkedBox(true);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                         
                     }else {
                         errorSound();
+                        crash(code);
                     }
                     break;
                 case 39:
@@ -158,12 +163,16 @@ public class Ant implements IAntInterface{
                     {
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countColumns++;
-                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                        Globals.matriz[countRows][countColumns].setType(0);
+                        if(!(changeStatus() == 1 && Globals.matriz[countRows][countColumns].getType() == 3))
+                        {
+                            this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                            Globals.matriz[countRows][countColumns].setType(0); 
+                        }
                         Globals.matriz[countRows][countColumns].setWalkedBox(true);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));
                     } else {
                         errorSound();
+                        crash(code);
                     }
                     break;
                 case 40:
@@ -172,28 +181,33 @@ public class Ant implements IAntInterface{
                     {
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
                         countRows++;
-                        this.eatClod(Globals.matriz[countRows][countColumns].getType());
-                        Globals.matriz[countRows][countColumns].setType(0); 
+                        if(!(changeStatus() == 1 && Globals.matriz[countRows][countColumns].getType() == 3))
+                        {
+                            this.eatClod(Globals.matriz[countRows][countColumns].getType());
+                            Globals.matriz[countRows][countColumns].setType(0); 
+                        }
                         Globals.matriz[countRows][countColumns].setWalkedBox(true);
                         Globals.matriz[countRows][countColumns].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/PruebaAnt.png")));                     
                     }else {
                         errorSound();
+                        crash(code);
                     }
                     break;
                 default:
                     break;
             }
-            win();
+            win(frame);
         }else{
             errorSound();
         }
     }
-    public void win()
+    public void win(JFrame frame)
     {
         if(this.countRows == Globals.amountRows - 1 && this.countColumns == Globals.amountColumns - 1) 
         {
             VictoryView vc = new VictoryView();
             vc.setVisible(true);
+            frame.setVisible(false);
         }
     }
     public void limit()
@@ -213,16 +227,16 @@ public class Ant implements IAntInterface{
         switch (code) 
         {
             case 37:
-                walk(randomMove);    
+                walk(randomMove,null);    
                 break;
             case 38:
-                walk(randomMove);
+                walk(randomMove,null);
                 break;
             case 39:
-                walk(randomMove);
+                walk(randomMove,null);
                 break;
             default:
-                walk(randomMove);
+                walk(randomMove,null);
                 break;
         }
     }//Method to eat clod
@@ -402,14 +416,20 @@ public class Ant implements IAntInterface{
     }
     public void showPath(JPanel panel)
     {
-        Globals.matriz = new Box[Globals.amountRows][Globals.amountColumns];
         panel.setLayout(new java.awt.GridLayout(Globals.amountRows, Globals.amountColumns));
         for (int i = 0; i < Globals.amountRows; i++) {
             for (int j = 0; j < Globals.amountColumns; j++) {
                 newBox = new Box(0);
                 panel.add(newBox);
+                Globals.matriz[0][0].setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Toxic-icon.png")));
+                if(Globals.matriz[i][j].isWalkedBox())
+                {
+                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Toxic-icon.png")));
+                }else
+                {
+                    newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
+                }
                 Globals.matriz[i][j] = newBox;
-                newBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pasto.png")));
             }    
         }  
         panel.paintAll(panel.getGraphics());

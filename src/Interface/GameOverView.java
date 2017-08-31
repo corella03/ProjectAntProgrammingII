@@ -27,9 +27,8 @@ public class GameOverView extends javax.swing.JFrame {
     }
     public void showPathAnt()
     {
-        GameView game = new GameView();
-        game.pathAnt();
-        this.setVisible(false);
+        ShowPathView path = new ShowPathView();
+        path.setVisible(true);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,6 +93,7 @@ public class GameOverView extends javax.swing.JFrame {
 
     private void showPathButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPathButtonActionPerformed
         showPathAnt();
+        this.setVisible(false);
     }//GEN-LAST:event_showPathButtonActionPerformed
     /**
      * @param args the command line arguments

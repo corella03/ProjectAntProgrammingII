@@ -31,6 +31,7 @@ public class GameView extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         path.starGame(this.gamePanel);
+        //this.newAnt.showPath(this.gamePanel);
         resizeImage();
         progressBar();
     }
@@ -40,12 +41,7 @@ public class GameView extends javax.swing.JFrame {
         go.setVisible(true);
         this.setVisible(false);
     }
-    public void pathAnt()
-    {   
-        GameView view = new GameView();
-        view.setVisible(true);
-        this.newAnt.showPath(this.gamePanel);
-    }
+    
     public void progressBar()
     {
         healthLabel.setText("Health: " + this.newAnt.getHealth() +"%");
@@ -181,7 +177,7 @@ public class GameView extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(1020, 110, 270, 454);
+        jPanel1.setBounds(1020, 110, 270, 450);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -197,20 +193,19 @@ public class GameView extends javax.swing.JFrame {
                     break;
                 case 1:
                     progressBar();
-                    newAnt.walk(evt.getKeyCode());
+                    newAnt.walk(evt.getKeyCode(), this);
                     cont ++;
                     resizeImage();
                     break;
                 case 2:
                     progressBar();
-                    //newAnt.walk(evt.getKeyCode());
                     newAnt.hip(evt.getKeyCode());
                     cont++;
                     resizeImage();
                     break;
                 case 3:
                     progressBar();
-                    newAnt.walk(evt.getKeyCode());
+                    newAnt.walk(evt.getKeyCode(),this);
                     cont++;
                     resizeImage();
                     break;

@@ -18,7 +18,6 @@ public class VictoryView extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +35,6 @@ public class VictoryView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(720, 480));
         setMinimumSize(new java.awt.Dimension(720, 480));
         getContentPane().setLayout(null);
 
@@ -62,6 +60,11 @@ public class VictoryView extends javax.swing.JFrame {
         jButton1.setBounds(160, 370, 65, 23);
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(390, 370, 73, 23);
 
@@ -79,6 +82,12 @@ public class VictoryView extends javax.swing.JFrame {
         GameOverView over = new GameOverView();
         over.returnMenu();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        GameOverView over = new GameOverView();
+        over.showPathAnt();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

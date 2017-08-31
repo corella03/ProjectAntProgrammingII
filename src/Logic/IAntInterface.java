@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Logic;
+
+import javax.swing.JFrame;
+
 /**
  **
  ** @author Luis Alonso Corella Chaves
@@ -12,7 +15,7 @@ package Logic;
  ** 
  **/
 public interface IAntInterface {
-    public void walk(int code);
+    public void walk(int code, JFrame frame);
     public void hip(int code);
     public void eatClod(int clod);
     public void modifyHealth(int type);
